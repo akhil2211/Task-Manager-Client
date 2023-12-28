@@ -1,0 +1,90 @@
+<div class="project-container">
+    <div class="project-form">
+     <div class="project-title"> <h2>Add New Project</h2></div>
+      <form [formGroup]="projectForm" action="/submit" method="post">
+
+        <label for="project_name">Project Name:</label>
+        <input type="text" formControlName="project_name" name="projectName" required>
+        @if (submit) {
+            @if(!projectForm.controls["project_name"].valid && projectForm.controls["project_name"].dirty || projectForm.controls["project_name"].touched){
+              <div class="validation-error">
+                @if(projectForm.controls["project_name"].errors?.["required"]){
+                  *Required Field     }                          
+              </div>
+            }
+
+        }
+
+        <label for="project_code">Project Code:</label>
+        <input type="text" formControlName="project_code" name="projectCode" required>
+
+          @if (submit) {
+            @if(!projectForm.controls["project_code"].valid && projectForm.controls["project_code"].dirty || projectForm.controls["project_code"].touched){
+              <div class="validation-error">
+                @if(projectForm.controls["project_code"].errors?.["required"]){
+                  *Required Field     }                          
+              </div>
+            }
+        } 
+      
+        <label for="project_description">Project Description:</label>
+        <textarea type="text" formControlName="project_description" name="projectDesc" required>  </textarea>
+     
+          @if (submit) {
+            @if(!projectForm.controls["project_description"].valid && projectForm.controls["project_description"].dirty || projectForm.controls["project_description"].touched){
+              <div class="validation-error">
+                @if(projectForm.controls["project_description"].errors?.["required"]){
+                  *Required Field     }                          
+              </div>
+            }
+        } 
+ 
+
+        <label for="due_date">Due Date:</label>
+        <input type="date" formControlName="due_date" name="projectDate" required>
+
+          @if (submit) {
+            @if(!projectForm.controls["due_date"].valid && projectForm.controls["due_date"].dirty || projectForm.controls["due_date"].touched){
+              <div class="validation-error">
+                @if(projectForm.controls["due_date"].errors?.["required"]){
+                  *Required Field     }                          
+              </div>
+            }
+        }               
+         
+      
+        <label for="project_status">Status:</label>
+   
+        <select id="projectStatus" name="projectStatus" formControlName="project_status" name="projectStatus" required>
+          <option value="Inititated">Inititated</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Completed">Completed</option>
+          
+        </select>
+      
+        @if (submit){
+        @if(!projectForm.controls["project_status"].valid && projectForm.controls["project_status"].dirty || projectForm.controls["project_status"].touched){
+          <div class="validation-error">
+            @if(projectForm.controls["project_status"].errors?.["required"]){
+              *Required Field   
+              }     
+            </div>
+          }
+      }
+
+      <div class="project-success">
+        @if(!projectSuccess){
+            @if (errorMsg) {
+                {{errorMsg}}
+            }
+        }
+    </div>  
+
+    <button type="submit" (click)="createProject()">Create</button>
+        
+      </form>
+    </div>
+  </div>
+ 
+ 
+

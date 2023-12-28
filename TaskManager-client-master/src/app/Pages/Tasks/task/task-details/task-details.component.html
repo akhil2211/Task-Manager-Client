@@ -1,0 +1,66 @@
+<div class="task-head">
+    <h2>{{task.t_title}}</h2>
+</div>
+
+
+<div class="task-details">
+    <div class="task-info">
+        <strong>Code:</strong>
+        <span>{{task.t_code}}</span>
+    </div>
+    <div class="task-info">
+        <strong>Description:</strong>
+        <span>{{task.t_description}}</span>
+    </div>
+    <div class="task-info">
+        <strong>Due Date:</strong>
+        <span>{{task.duedate}}</span>
+    </div>
+    <div class="task-info">
+        <strong>Status:</strong>
+        <div class="withEdit">
+            @if (isStatusOptionOpened) {
+                <select id="taskStatus" name="taskStatus" formControlName="t_status" name="taskStatus" required #selectStatus >
+                    <option value="Active">Active</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Under Review">Under Review</option>
+                    <option value="Completed">Completed</option>
+                  </select>
+                <button (click)="onChangeStatus()">Change</button>
+            }@else {
+                <span>{{status}}</span>
+                <button (click)="changeStatus()">Edit Status</button>
+            }
+        </div>
+    </div>
+    <div class="task-info">
+        <strong>Assigned To:</strong>
+        <div class="withEdit">
+            @if (isAssignedToOptionOpened) {
+                <select name="" id="" #selectTaskHolder >
+                    @for (item of projectUsers; track $index) {
+                        <option value={{item.id}}>{{item.firstname}} {{item.lastname}}</option>
+                    }
+                </select>
+                <button (click)="onChangeAssignedTo()">Change</button>
+            }@else {
+                <span>{{asignedTo}}</span>
+                <button (click)="changeAssignedTo()">Change Task Holder</button>
+            }
+        </div>
+    </div>
+    <div class="task-info">
+        <strong>Project:</strong>
+        <span>{{task.project_name}}</span>
+    </div>
+    <div class="task-info">
+        <strong>Category:</strong>
+        <span>{{task.c_name}}</span>
+    </div>
+    <div class="task-info">
+        <strong>Priority:</strong>
+        <span>{{task.type}}</span>
+    </div>
+
+</div>
+

@@ -1,0 +1,49 @@
+<div class="login-container">
+    <div class="login-form">
+     <div class="form-title">
+      <h2>Login</h2>
+    </div> 
+
+      <form [formGroup]="loginForm" method="post" (ngSubmit)="userLogin()">
+        <label for="username">Username:</label>
+        <input type="text" formControlName="username" id="username" name="username" required >
+       @if (submit) {
+        @if(!loginForm.controls["username"].valid && loginForm.controls["username"].dirty || loginForm.controls["username"].touched){
+          <div class="validate-error">
+            @if(loginForm.controls["username"].errors?.['required']){
+              *Required Field
+          }@else if (loginForm.controls["username"].errors?.['minlength']) {
+              Minimum length should be 4
+          }@else if (loginForm.controls["username"].errors?.['maxlength']) {
+              Maximum length should be 15. } 
+          </div>
+
+        } 
+      }          
+                        
+        <label for="password">Password:</label>
+        <input type="password" formControlName="password" id="password" name="password" required>
+
+       @if(submit){
+        @if(!loginForm.controls["password"].valid && loginForm.controls["password"].dirty|| loginForm.controls["password"].touched){
+          <div class="validate-error">
+            @if(loginForm.controls["password"].errors?.['required']){
+              *Required Field
+            }@else if (loginForm.controls["password"].errors?.['pattern']) {
+               Password must contain minimum 8 and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character}
+          </div>
+        } 
+      }
+      <div class="login-status">
+        @if(!loginSuccess){
+            @if (errorMsg) {
+                {{errorMsg}}
+            }
+        }
+    </div>          
+     
+        <button type="submit">Login</button>
+        
+      </form>
+    </div>
+  </div>

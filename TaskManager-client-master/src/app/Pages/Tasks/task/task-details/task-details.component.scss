@@ -1,0 +1,75 @@
+.task-head {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 8px 8px 0 0;
+}
+
+.task-details {
+    width: 70%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ecf0f1;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-bottom:5px solid #66a8d4
+}
+
+.task-info {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    border-radius: 6px;;
+}
+
+.task-info strong {
+    display: inline-block;
+    width: 120px; 
+    font-weight: bold;
+}
+
+.task-info span {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.redBullet,
+.greenBullet {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.redBullet {
+    background-color: red;
+}
+
+.greenBullet {
+    background-color: green;
+}
+hr{
+    border-radius: 30%;
+}
+.withEdit{
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    border-radius: 3px;
+}
+.withEdit select{
+    margin-left: 10px;
+    width: 50%;
+}
+.withEdit button{
+    padding: 5px 0px 5px 0px;
+    border: none;
+    background-color: #3498db;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    color: white;
+    width: 150px;
+    cursor: pointer;
+}

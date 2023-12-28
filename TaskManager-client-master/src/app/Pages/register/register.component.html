@@ -1,0 +1,176 @@
+<div class="register-container">
+  <div class="register-form">
+    <div class="register-title">
+      <h2>Register</h2>
+    </div>
+    <form [formGroup]="registerForm" action="/submit" method="post">
+      <div class="name">
+        <div class="item">
+          <label for="firstname">First Name:</label>
+          <input type="text" formControlName="firstname" name="firstname" required>          @if (submit) {
+          @if(!registerForm.controls["firstname"].valid && registerForm.controls["firstname"].dirty ||
+          registerForm.controls["firstname"].touched){
+          <div class="validation-error">
+            @if(registerForm.controls["firstname"].errors?.["required"]){
+            *Required Field }
+          </div>
+          }
+          }
+        </div>
+        <div class="item">
+          <label for="lastname">Last Name:</label>
+          <input type="text" formControlName="lastname" name="lastname">
+
+        </div>
+      </div>
+      <div class="item">
+        <label for="username">Username:</label>
+      <input type="text" formControlName="username" name="username" required>
+      @if (submit){
+      @if(!registerForm.controls["username"].valid && registerForm.controls["username"].dirty ||
+      registerForm.controls["username"].touched){
+      <div class="validation-error">
+        @if (registerForm.controls["username"].errors?.["required"]) {
+        *Required Field
+        }
+        @else if (registerForm.controls["username"].errors?.["minlength"]) {
+        Min Length is 4
+        }
+        @else if (registerForm.controls["username"].errors?.["maxlength"]) {
+        Max Length is 10
+        }
+      </div>
+      }
+      }
+      </div>
+      <div class="item">
+        <label for="password">Password:</label>
+      <input type="password" formControlName="password" name="password" required>
+
+      @if (submit){
+      @if(!registerForm.controls["password"].valid && registerForm.controls["password"].dirty ||
+      registerForm.controls["password"].touched){
+      <div class="validation-error">
+        @if (registerForm.controls["password"].errors?.["required"]) {
+        *Required Field
+        }
+        @else if (registerForm.controls["password"].errors?.["pattern"]) {
+        Password must contain minimum 8 and maximum 10 characters, at least one uppercase letter, one lowercase letter,
+        one number and one special character}
+      </div>
+      }
+      }
+      </div>
+      <div class="item">
+        <label for="confirmPassword">Confirm Password:</label>
+      <input type="password" formControlName="confirmPassword" name="confirmPassword" required>
+
+      @if (submit){
+      @if(!registerForm.controls["confirmPassword"].valid && registerForm.controls["confirmPassword"].dirty ||
+      registerForm.controls["confirmPassword"].touched){
+      <div class="validation-error">
+        @if (registerForm.controls["confirmPassword"].errors?.["required"]) {
+        *Required Field
+        }
+        @else if(registerForm.controls["confirmPassword"].value!=registerForm.controls["password"].value){
+        Password does not match
+        }
+      </div>
+      }
+      }
+      </div>
+      
+      <div class="item">
+        <label for="email">Email:</label>
+      <input type="text" formControlName="email" name="email" required>
+      @if (submit){
+      @if(!registerForm.controls["email"].valid && registerForm.controls["email"].dirty ||
+      registerForm.controls["email"].touched){
+      <div class="validation-error">
+        @if(registerForm.controls["email"].errors?.["required"]){
+        *Required Field }
+        @else if (registerForm.controls["email"].errors?.["pattern"]) {
+        Invalid Email
+        }
+      </div>
+      }
+      }
+      </div>
+      <div class="name">
+        <div class="item">
+          <label for="orgId">Organization </label>
+      <input type="text" formControlName="orgId" name="orgId" required>
+
+      @if (submit){
+      @if(!registerForm.controls["orgId"].valid && registerForm.controls["orgId"].dirty ||
+      registerForm.controls["orgId"].touched){
+      <div class="validation-error">
+        @if(registerForm.controls["orgId"].errors?.["required"]){
+        *Required Field }
+        @else if (registerForm.controls["orgId"].errors?.["pattern"]) {
+        Invalid Id Entered !
+        }
+      </div>
+      }
+      }
+        </div>   
+
+        <div class="item">
+          <label for="roleId">Role:</label>
+
+      <select id="roleId" name="roles" formControlName="roleId" name="role" required>
+        <option value="2">General Manager</option>
+        <option value="3">Project Manager</option>
+        <option value="4">User</option>
+
+      </select>
+
+      @if (submit){
+      @if(!registerForm.controls["role"].valid && registerForm.controls["role"].dirty ||
+      registerForm.controls["role"].touched){
+      <div class="validation-error">
+        @if(registerForm.controls["role"].errors?.["required"]){
+        *Required Field
+        }
+      </div>
+      }
+      }
+        </div>
+      </div>     
+
+        <div class="item">
+          <label for="bossId">Reporting Officer:</label>
+
+      <select id="bossId" name="bossId" formControlName="bossId" name="bossId" required>
+        @for (item of users; track $index) {
+          <option value={{item.id}}>{{item.firstname}} {{item.lastname}}</option>  
+        }
+
+      </select>
+       
+      @if (submit){
+      @if(!registerForm.controls["role"].valid && registerForm.controls["role"].dirty ||
+      registerForm.controls["role"].touched){
+      <div class="validation-error">
+        @if(registerForm.controls["role"].errors?.["required"]){
+        *Required Field
+        }
+      </div>
+      }
+      }
+        </div>
+       
+      
+      <div class="register-status">
+        @if(!registerSuccess){
+        @if (errorMsg) {
+        {{errorMsg}}
+        }
+        }
+      </div>
+
+      <button type="submit" (click)="userRegister()">Register</button>
+
+    </form>
+  </div>
+</div>

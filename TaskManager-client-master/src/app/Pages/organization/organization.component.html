@@ -1,0 +1,36 @@
+<div class="organization-form">
+    <h2>Create Organization</h2>
+    <form [formGroup]="orgForm" >
+      <div class="form-group">
+        <label for="orgName">Organization Name</label>
+        <input type="text" id="orgName" name="orgName" formControlName="org_name" required>
+      </div>
+      @if (submit){
+        @if(!orgForm.controls["org_name"].valid && orgForm.controls["org_name"].dirty || orgForm.controls["org_name"].touched){
+          <div class="validation-error">
+            @if(orgForm.controls["org_name"].errors?.["required"]){
+              *Required Field   
+              }     
+          </div>
+          }
+      }
+
+      <div class="form-group">
+        <label for="orgCode">Organization Code</label>
+        <input type="text" id="orgCode" name="orgCode" formControlName="org_code" required>
+      </div>
+      @if (submit){
+        @if(!orgForm.controls["org_code"].valid && orgForm.controls["org_code"].dirty || orgForm.controls["org_code"].touched){
+          <div class="validation-error">
+            @if(orgForm.controls["org_code"].errors?.["required"]){
+              *Required Field   
+              }     
+          </div>
+          }
+      }
+      <button type="submit" (click)="createOrg()">Create</button>
+    </form>
+ 
+  </div>
+
+ 

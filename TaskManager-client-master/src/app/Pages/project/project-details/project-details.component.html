@@ -1,0 +1,48 @@
+
+    <div class="project-head">
+        <h2>{{project.project_name}}</h2>
+    </div>
+
+    <div class="project-details">
+        <div class="project-info">
+            <strong>Project Code:</strong>
+            <span>{{project.project_code}}</span>
+        </div>
+        <div class="project-info">
+            <strong>Description:</strong>
+            <span>{{project.project_description}}</span>
+        </div>
+        <div class="project-info">
+            <strong>Due Date:</strong>
+            <span>{{project.due_date}}</span>
+        </div>
+        <div class="project-info">
+            <strong>Status:</strong>
+            <span>{{project.project_status}}</span>
+        </div>
+        <div class="project-members">
+            <div class="members">
+                <strong>Project Members:</strong>               
+                <button (click)="onAddClick()">Add</button>
+            </div>
+            <div class="membertable">
+                <table>
+                    <tr>
+                      <th>Name</th>
+                      <th>Designation</th>
+                      <th></th>
+                    </tr>
+                    @for (item of userList; track $index) {
+                      <tr>
+                        <td>{{item.firstname}} {{item.lastname}}</td>
+                        
+                        <td>{{item.roles}}</td>
+                        <div class="remove-button"><button (click)="onRemoveClick(item.id)">Remove</button></div>
+                      </tr>
+                    }
+                  </table>
+            </div>
+        </div>
+   
+    </div>
+ 

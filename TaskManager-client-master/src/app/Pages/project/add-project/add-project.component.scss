@@ -1,0 +1,71 @@
+body {
+    font-family:Cambria;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    width: 50%;
+}
+
+.project-container {
+    display: flex;
+    margin: 20px;
+    height: 100%;
+    width: 400px;
+ 
+}
+
+.project-form {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.project-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 8px 8px 0 0;
+}
+
+.project-form label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.project-form input,
+.project-form textarea,
+.project-form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+.validation-error {
+    color: red;
+    margin-top: 5px;
+}
+
+.project-success {
+    color: green;
+    margin-top: 10px;
+}
+
+button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #2980b9;
+}

@@ -1,0 +1,31 @@
+
+@switch(showProjectDetails){
+  @case(false){
+   <div class="container">
+    <div>
+         <input type="text" placeholder="Search Projects" id="searchBar" (input)="searchProject($event)">
+         <i class="fa-solid fa-magnifying-glass search-icon" ></i>
+      <button (click)="showCreateProject()">Create <span>+</span></button>
+    </div>
+    <h1>Project List</h1>
+    <app-list-project [projectName]="searchName" (viewEvent)="viewEventDetails($event)"></app-list-project>
+ 
+    
+</div>}
+
+@case(true){
+  <app-project-details [project]="projectDetails"></app-project-details>
+}
+@default{
+  <div class="container">
+    <div>
+         <input type="text" placeholder="Search Projects" id="searchBar">
+         <i class="fa-solid fa-magnifying-glass search-icon" ></i>
+      <button (click)="showCreateProject()">Create <span>+</span></button>
+    </div>
+    <h1>Project List</h1>
+    <app-list-project (viewEvent)="viewEventDetails($event)"></app-list-project>
+    
+</div>
+}
+}

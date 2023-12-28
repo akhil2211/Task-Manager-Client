@@ -1,0 +1,24 @@
+
+<div class="category-form">
+    <h2>Create Task Category</h2>
+    <form [formGroup]="catForm" >
+      <div class="form-group">
+        <label for="catName">Category</label>
+        <input type="text" id="catName" name="catName" formControlName="Category" required>
+      </div>
+      @if (submit){
+        @if(!catForm.controls["Category"].valid && catForm.controls["Category"].dirty || catForm.controls["Category"].touched){
+          <div class="validation-error">
+            @if(catForm.controls["Category"].errors?.["required"]){
+              *Required Field   
+              }     
+          </div>
+          }
+      }
+     
+      <button type="submit" (click)="createCategory()">Create</button>
+    </form>
+ 
+  </div>
+
+ 

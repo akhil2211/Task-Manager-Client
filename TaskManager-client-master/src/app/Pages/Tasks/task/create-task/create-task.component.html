@@ -1,0 +1,215 @@
+<div class="task-container">
+  <div class="task-form">
+    <div class="task-title">
+      <h2>Add New Task</h2>
+    </div>
+    <form [formGroup]="taskForm" method="post">
+      <div class="top">
+        <div class="top-items">
+          <div class="item">
+            <div class="field">
+              <div class="label-container">
+                <label for="t_title">Title:</label>
+              </div>
+              <div class="input-container">
+                <input type="text" formControlName="t_title" name="t_title" required>
+                @if (submit) {
+                @if(!taskForm.controls["t_title"].valid && taskForm.controls["t_title"].dirty ||
+                taskForm.controls["t_title"].touched){
+                <div class="validation-error">
+                  @if(taskForm.controls["t_title"].errors?.["required"]){
+                  *Required Field }
+                </div>
+                }
+                }
+              </div>
+
+            </div>
+            <div class="field">
+              <div class="label-container">
+                <label for="t_code">Task Code:</label>
+              </div>
+              <div class="input-container">
+                <input type="text" formControlName="t_code" name="taskCode" required>
+  
+                @if (submit) {
+                @if(!taskForm.controls["t_code"].valid && taskForm.controls["t_code"].dirty ||
+                taskForm.controls["t_code"].touched){
+                <div class="validation-error">
+                  @if(taskForm.controls["t_code"].errors?.["required"]){
+                  *Required Field }
+                </div>
+                }
+                }
+               </div>
+            </div>
+            <div class="field">
+              <div class="label-container">
+                <label for="category">Category:</label>
+              </div>
+              <div class="input-container">
+                <select id="category" name="assigned_to" formControlName="category_id" name="category" required>
+                  @for (item of categoryList; track $index) {
+                    <option value={{item.id}}>{{item.c_name}}</option>
+                  }
+                </select>
+                @if (submit) {
+                  @if(!taskForm.controls["category_id"].valid && taskForm.controls["category_id"].dirty ||
+                  taskForm.controls["category_id"].touched){
+                  <div class="validation-error">
+                    @if(taskForm.controls["category_id"].errors?.["required"]){
+                    *Required Field }
+                  </div>
+                  }
+                  }
+                
+              </div>
+            </div>
+            <div class="field">
+              <div class="label-container">
+                <label for="duedate">Due Date:</label>
+              </div>
+              <div class="input-container">
+                <input type="date" formControlName="duedate" name="taskDate" required>
+                @if (submit) {
+                @if(!taskForm.controls["duedate"].valid && taskForm.controls["duedate"].dirty ||
+                taskForm.controls["duedate"].touched){
+                <div class="validation-error">
+                  @if(taskForm.controls["duedate"].errors?.["required"]){
+                  *Required Field }
+                </div>
+                }
+                }
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="field">
+              <div class="label-container">
+                <label for="project_id">Choose Project:</label>
+              </div>
+              <div class="input-container">
+                <select id="project_id" name="project_id" formControlName="project_id" name="project_id" (change)="onProjectChange($event)" required>
+                  @for (item of projects; track $index) {
+                  <option value={{item.id}}>{{item.project_name}}<option>
+                    }  
+                </select>
+                
+                @if (submit){
+                  @if(!taskForm.controls["project_id"].valid && taskForm.controls["project_id"].dirty ||
+                  taskForm.controls["project_id"].touched){
+                  <div class="validation-error">
+                    @if(taskForm.controls["project_id"].errors?.["required"]){
+                    *Required Field
+                    }
+                  </div>
+                  }
+                  }
+              </div>              
+            </div>
+            <div class="field">
+              <div class="label-container">
+                <label for="assigned_to">Assign To:</label>
+              </div>
+              <div class="input-container">
+                <select id="assigned_to" name="assigned_to" formControlName="assigned_to" name="assigned_to" required>
+                  @for (item of projectUsers; track $index) {
+                    <option value={{item.id}}>{{item.firstname}} {{item.lastname}}</option>  
+                  }
+                </select>
+                @if (submit){
+                @if(!taskForm.controls["assigned_to"].valid && taskForm.controls["assigned_to"].dirty ||
+                taskForm.controls["assigned_to"].touched){
+                <div class="validation-error">
+                  @if(taskForm.controls["assigned_to"].errors?.["required"]){
+                  *Required Field
+                  }
+                </div>
+              
+                }
+                }
+              </div>              
+            </div>
+            <div class="field">
+              <div class="label-container">
+                <label for="assigned_to">Priority:</label>
+              </div>
+              <div class="input-container">
+                <select id="priority" name="priority" formControlName="priority_id" name="priority" required>
+                  @for (item of priorityList; track $index) {
+                    <option value={{item.id}}>{{item.type}}</option>
+                  }  
+                </select>
+                
+                @if (submit){
+                  @if(!taskForm.controls["priority_id"].valid && taskForm.controls["priority_id"].dirty ||
+                  taskForm.controls["priority_id"].touched){
+                  <div class="validation-error">
+                    @if(taskForm.controls["priority_id"].errors?.["required"]){
+                    *Required Field
+                    }
+                  </div>
+                  }
+                  }
+              </div>
+            </div>
+            <div class="field">
+              <div class="label-container">
+                <label for="t_status">Status:</label>
+              </div>
+              <div class="input-container">
+                <select id="taskStatus" name="taskStatus" formControlName="t_status" name="taskStatus" required>
+                  <option value="Active">Active</option>
+                  <option value="Pending">Pending</option>
+                  <option value="Under Review">Under Review</option>
+                  <option value="Completed">Completed</option>
+                </select>
+  
+                @if (submit){
+                @if(!taskForm.controls["t_status"].valid && taskForm.controls["t_status"].dirty ||
+                taskForm.controls["t_status"].touched){
+                <div class="validation-error">
+                  @if(taskForm.controls["t_status"].errors?.["required"]){
+                  *Required Field
+                  }
+                </div>
+                }
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="top-items">
+          <div class="desc-label-container">
+            <label for="t_description"> Description:</label>
+          </div>
+          <div class="desc-input-container">
+            <textarea type="text" formControlName="t_description" name="taskDesc" required>  </textarea>
+
+          @if (submit) {
+          @if(!taskForm.controls["t_description"].valid && taskForm.controls["t_description"].dirty ||
+          taskForm.controls["t_description"].touched){
+          <div class="validation-error">
+            @if(taskForm.controls["t_description"].errors?.["required"]){
+            *Required Field }
+          </div>
+          }
+          }
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+        <button type="submit" (click)="createTask()">Create</button>
+      </div>
+      <div class="task-success">
+        @if(!taskCreateSuccess){
+        @if (errorMsg) {
+        {{errorMsg}}
+        }
+        }
+      </div>
+
+
+    </form>
+  </div>
+</div>

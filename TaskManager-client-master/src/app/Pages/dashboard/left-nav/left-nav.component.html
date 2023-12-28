@@ -1,0 +1,44 @@
+
+<div class="left-sidebar">
+
+@switch (userRole) {
+  @case ("ADMIN") 
+  {
+    <div class="items">   
+      
+      <div class="item" (click)="viewComponent('user')">User List</div>
+  
+      <div  class="item" (click)="viewComponent('register')">Register Users</div>
+
+      <div  class="item" (click)="viewComponent('createOrg')">Create Organzation</div>
+
+      <div  class="item" (click)="viewComponent('createCategory')">Create Task Category</div>
+     
+    </div>
+
+  } 
+
+  @case ("GM") {
+    <div class="items">   
+       <div class="item" (click)="viewComponent('team')">Team</div>
+
+       <div class="item" (click)="viewComponent('project')">Projects</div>       
+
+       <div class="item" (click)="viewComponent('task')">Tasks</div>
+
+    </div>
+  }
+
+  @case("PM"){
+     <div class="item" (click)="viewComponent('team')">Team</div>
+
+     <div class="item" (click)="viewComponent('task')">Tasks</div>
+      
+  }
+  @case("USER") {
+    <div class="item" (click)="viewComponent('myTasks')">My Tasks</div>
+    <div class="item"(click)="viewComponent('projectDetails')">My Projects</div>
+  }
+
+}
+</div>

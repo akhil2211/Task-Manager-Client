@@ -1,0 +1,45 @@
+
+h2{
+    display: flex;
+    justify-content: center;
+}
+.teams-list {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.teams-list h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+
+.member-item {
+    padding:7px;
+    border-bottom: 1px solid #ddd;
+    cursor:pointer;
+}
+
+
+.member-title {
+    display: inline-block;
+    font-weight: bold;
+    width: 60%;
+    color:  #0d67a3;
+    font-size: 18px;
+}
+.member-role{
+    display: inline-block;
+    display: flex;
+    width:20%;
+    float: right;
+    color: rgb(45, 117, 252);
+}
+
+.member-item:hover {
+    background-color: #f0f0f0;
+    transition: background-color 0.3s ease;
+}

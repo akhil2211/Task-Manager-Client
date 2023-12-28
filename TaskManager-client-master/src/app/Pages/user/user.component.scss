@@ -1,0 +1,46 @@
+h2{
+    display: flex;
+    justify-content: center;
+    color: white;
+    padding: 10px 0px 10px 0px;
+    margin: 0;
+    background-color: #3498db;
+}
+.users-list {
+    background-color: #fff;
+    margin-top: 40px;
+    border-radius: 8px;
+    width: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.users-list h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+
+.user-item {
+    border-bottom: 1px solid #ddd;
+    padding: 5px;
+    margin-bottom:5px;
+}
+
+
+.user-title {
+    font-weight: bold;
+    color: #0e4aa3; 
+    font-size: 18px;
+    }
+
+.user-role{
+    float: right;
+    margin-right: 5px;
+    color:#3498db ;
+}
+
+.user-item:hover {
+    background-color: #f0f0f0;
+    transition: background-color 0.3s ease;
+}

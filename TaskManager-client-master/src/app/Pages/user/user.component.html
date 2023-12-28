@@ -1,0 +1,13 @@
+
+<div class="users-list">
+    <h2>Users</h2>
+    <div class="user-list">
+        @for(user of users;track user.id){
+            <div class="user-item">
+                <div class="user-title">{{ user.firstname }} {{ user.lastname }}   
+                <div class="user-role">{{ user.roles}}</div>       
+            </div>          
+            </div>
+          }
+      </div>
+</div>

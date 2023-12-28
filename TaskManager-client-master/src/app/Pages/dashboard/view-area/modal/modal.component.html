@@ -1,0 +1,16 @@
+<div class="modal">
+	<div class="modal-overlay" (click)="close($event)"></div>
+	<div class="modal--modal-content">
+      @if (modalTitle=="createProject") {
+        <app-add-project></app-add-project>
+      }
+      @else if(modalTitle=="createTask"){
+        <app-create-task></app-create-task>
+
+      }
+      @else if(modalTitle=="addMember"){
+        <app-add-member [projectData]="modalText"></app-add-member>
+      }
+		<a class="modal--close-btn" (click)="close($event)">X</a>
+	</div>
+</div>

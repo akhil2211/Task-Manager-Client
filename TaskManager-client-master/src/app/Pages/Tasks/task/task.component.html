@@ -1,0 +1,43 @@
+@switch(showTaskDetails){
+  @case(false){
+  <div class="container">
+    <div>        
+         <input type="text" placeholder="Find Tasks" id="searchBar" (input)="searchTask($event)">
+         <i class="fa-solid fa-magnifying-glass search-icon" ></i>
+      <button (click)="showCreateTask()">Create Task<span>+</span></button>
+    </div>
+  
+      <h1>Tasks You Assigned</h1>
+    
+    <app-list-task [taskName]="searchTaskName" (viewEvent)="viewEventDetails($event)"> </app-list-task>
+     
+      <div class="second-container">
+        <h1>Tasks Assigned To You</h1>
+        <app-my-tasks> </app-my-tasks>
+      </div>
+    </div>
+  }
+
+@case(true){
+  <app-task-details [task]="taskDetails"></app-task-details > 
+ }
+
+@default{
+  <div class="container">
+    <div>        
+         <input type="text" placeholder="Find Tasks" id="searchBar">
+         <i class="fa-solid fa-magnifying-glass search-icon" ></i>
+      <button (click)="showCreateTask()">Create Task<span>+</span></button>
+    </div>
+  
+      <h1>Tasks You Assigned</h1>
+    
+    <app-list-task>[taskName]="searchTaskName" (viewEvent)="viewEventDetails($event)" </app-list-task>
+   
+    <div class="second-container">
+      <h1>Tasks Assigned To You</h1>    
+      <app-my-tasks> </app-my-tasks>
+    </div>
+  </div>
+}
+}

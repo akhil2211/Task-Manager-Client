@@ -1,0 +1,26 @@
+    <table>
+      <thead>
+        <tr>
+          <th>Project Name</th>
+          <th>Status</th>     
+          <th>Due Date</th>     
+        </tr>
+      </thead>
+      <tbody>
+  @for(project of projects; track project.id) {
+          <tr class="project-item" (click)="showDetails(project)">
+            <td>{{ project.project_name }}</td>
+            <td class="status-item">
+              @if (project.project_status == "Completed") {
+                <div class="greenBullet"></div>
+              } @else {
+                <div class="redBullet"></div>
+              }
+              <span>{{ project.project_status }}</span>
+            </td>
+            <td>{{ project.due_date }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  

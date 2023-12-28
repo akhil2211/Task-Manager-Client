@@ -1,0 +1,24 @@
+.dashboard-container{
+    height: 83%;
+    border-radius: 12px;   
+    margin-top: 6px;
+    display: flex;
+    width: 100%;
+    gap:8px   
+
+}
+app-left-nav{
+    height: 100%;
+    width: 18%;
+    border-radius: 12px;   
+}
+app-view-area{
+    display: flex; 
+    align-self: start;  
+    height: 100%;
+     width: 82%;
+    border-radius: 12px;
+
+}
+
+

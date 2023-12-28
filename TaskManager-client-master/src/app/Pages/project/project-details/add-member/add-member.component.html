@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="top">
+        <div class="top-title">
+            <span>Add Members</span>
+            <button (click)="assignProject()">Submit</button>
+        </div>
+        <div class="searchInput">
+            <input type="text" placeholder="Search Member" (input)="searchName($event)">
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="search-result">
+            <table>
+              <tr>
+                <th>Name</th>
+                <th>Designation</th>
+                <th></th>
+              </tr>
+              @for (item of userList; track $index) {
+                @if(isUserSelected(item)){
+                  <tr>
+                    <td>{{item.firstname}} {{item.lastname}}</td>
+                    <td>{{item.roles}}</td>
+                    <td><button class="add-button" (click)="addUser(item)">Add</button></td>
+                  </tr>
+                }
+              }
+              </table>
+        </div>
+        <div class="selected-members">
+            <table>
+                <tr>
+                  <th>Name</th>
+                  <th>Designation</th>
+                  <th></th>
+                </tr>
+                @for (item of selectedList; track $index) {
+                  <tr>
+                    <td>{{item.firstname}} {{item.lastname}}</td>
+                    <td>{{item.roles}}</td>
+                    <td><button class="remove-button" (click)="removeUser(item)">Remove</button></td>
+                  </tr>
+                }
+              </table>
+        </div>
+    </div>
+</div>
