@@ -32,7 +32,8 @@ export class AddProjectComponent implements OnInit {
       project_name:["",Validators.required],
       project_description:["",Validators.required],
       due_date:["",Validators.required],
-      project_status:["",Validators.required]
+      project_status:["",Validators.required],
+      client:["",Validators.required]
     
    })
  }
@@ -53,7 +54,8 @@ export class AddProjectComponent implements OnInit {
     project_name:formValues.project_name,
     project_description: formValues.project_description,
     due_date:formValues.due_date,
-    project_status:formValues.project_status   
+    project_status:formValues.project_status,
+    client: formValues.client   
  }
 
  console.log(projectData);

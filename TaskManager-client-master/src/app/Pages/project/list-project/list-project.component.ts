@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { CommonModule } from '@angular/common';
 import { AppService } from '../../../Services/app-service.service';
 import { environment } from '../../../../environments/environment.development';
-import { HttpParams } from '@angular/common/http';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-list-project',
@@ -68,4 +68,5 @@ export class ListProjectComponent implements OnInit,OnChanges {
   showDetails(project:any){
   this.viewEvent.emit(project);
   }
+
 }

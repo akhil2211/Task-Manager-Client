@@ -29,10 +29,12 @@
                 <button (click)="onChangeStatus()">Change</button>
             }@else {
                 <span>{{status}}</span>
-                <button (click)="changeStatus()">Edit Status</button>
+                @if (showRequiredDetails) {
+                <button (click)="changeStatus()">Edit Status</button>}
             }
         </div>
     </div>
+    @if (showRequiredDetails) {
     <div class="task-info">
         <strong>Assigned To:</strong>
         <div class="withEdit">
@@ -48,10 +50,11 @@
                 <button (click)="changeAssignedTo()">Change Task Holder</button>
             }
         </div>
-    </div>
+    </div>}
+
     <div class="task-info">
         <strong>Project:</strong>
-        <span>{{task.project_name}}</span>
+        <span>{{task.project.project_name}}</span>
     </div>
     <div class="task-info">
         <strong>Category:</strong>

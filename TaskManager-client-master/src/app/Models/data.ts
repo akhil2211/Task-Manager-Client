@@ -22,6 +22,7 @@ export interface Project{
     project_description:String,
     due_date:Date ,
     project_status:String 
+    client:String
 }
 
 export interface Task{

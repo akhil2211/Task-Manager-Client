@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../../../environments/environment.development';
 import { AppService } from '../../../../Services/app-service.service';
@@ -11,7 +11,7 @@ import { HttpParams } from '@angular/common/http';
   templateUrl: './my-tasks.component.html',
   styleUrl: './my-tasks.component.scss'
 })
-export class MyTasksComponent {
+export class MyTasksComponent implements OnInit,OnChanges{
    mytasks:any[]=[];
    @Output() viewEvent=new EventEmitter<any>()
    @Input() taskName:string|null=null;

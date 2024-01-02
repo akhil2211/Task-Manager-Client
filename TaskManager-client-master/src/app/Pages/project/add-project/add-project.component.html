@@ -71,6 +71,18 @@
             </div>
           }
       }
+      
+      <label for="client">Client :</label>
+      <input type="client" formControlName="client" name="client" required>
+        @if (submit){
+        @if(!projectForm.controls["client"].valid && projectForm.controls["client"].dirty || projectForm.controls["client"].touched){
+          <div class="validation-error">
+            @if(projectForm.controls["client"].errors?.["required"]){
+              *Required Field   
+              }     
+            </div>
+          }
+      }
 
       <div class="project-success">
         @if(!projectSuccess){

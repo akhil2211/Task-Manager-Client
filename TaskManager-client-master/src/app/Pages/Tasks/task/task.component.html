@@ -13,7 +13,7 @@
      
       <div class="second-container">
         <h1>Tasks Assigned To You</h1>
-        <app-my-tasks> </app-my-tasks>
+        <app-my-tasks [taskName]="searchTaskName" (viewEvent)="viewEventDetails($event)"> </app-my-tasks>
       </div>
     </div>
   }

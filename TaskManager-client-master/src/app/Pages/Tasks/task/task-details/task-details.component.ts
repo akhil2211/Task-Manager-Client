@@ -16,17 +16,31 @@ export class TaskDetailsComponent implements OnInit {
   @Output() editSuccessEvent = new EventEmitter<any>()
   @ViewChild("selectStatus") selectStatus:any
   @ViewChild("selectTaskHolder") selectTaskHolder:any
+  userRole:any
+  user:any
   newAssignedToId:any
   newAssignedTo:any
   newStatus:any
   status:any
   asignedTo:any
   isStatusOptionOpened:boolean=false
+  showRequiredDetails:boolean=false
   isAssignedToOptionOpened:boolean=false
   projectUsers:any[] =[]
 
   constructor (private api:AppService){}
   ngOnInit(): void {
+    this.user=localStorage.getItem("user");   
+    console.log(this.user);
+     this.userRole=JSON.parse(this.user).role.roles;
+     if(this.userRole=="GM"){
+      this.showRequiredDetails=true;
+     }
+     else{
+      this.showRequiredDetails=false;
+     }
+     console.log(this.userRole);
+    
     console.log(this.task);
     this.status=this.task.t_status
     this.asignedTo=this.task.firstname+" "+this.task.lastname
@@ -35,7 +49,7 @@ export class TaskDetailsComponent implements OnInit {
     this.isStatusOptionOpened = true
   }
   changeAssignedTo(){
-    this.api.getReturn(`${environment.apiUrl}/api/v1/project/${this.task.project_id}/userlist`).subscribe((data:any)=>{
+      this.api.getReturn(`${environment.apiUrl}/api/v1/project/${this.task.project_id}/userlist`).subscribe((data:any)=>{
       this.projectUsers = data
       this.isAssignedToOptionOpened=true
     },(error)=>{
@@ -84,6 +98,7 @@ export class TaskDetailsComponent implements OnInit {
       
     })
   }
+
 
 }
 

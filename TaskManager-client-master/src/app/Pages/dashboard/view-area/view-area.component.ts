@@ -6,9 +6,7 @@ import { UserComponent } from '../../user/user.component';
 import { RegisterComponent } from '../../register/register.component';
 import { OrganizationComponent } from '../../organization/organization.component';
 import { TaskCategoryComponent } from '../../task-category/task-category.component';
-import { AddProjectComponent } from '../../project/add-project/add-project.component';
 import { ProjectComponent } from '../../project/project.component';
-import { ListTeamComponent } from '../../list-team/list-team.component';
 import { TeamComponent } from '../team/team.component';
 
 @Component({
@@ -24,8 +22,8 @@ export class ViewAreaComponent implements OnInit{
 
    ngOnInit(): void {
    this.dataService.notifyObservale$.subscribe((data:any) =>{
-  console.log(data);
-  this.comp=data;
+   console.log(data);
+   this.comp=data;
    })
  }
 }
