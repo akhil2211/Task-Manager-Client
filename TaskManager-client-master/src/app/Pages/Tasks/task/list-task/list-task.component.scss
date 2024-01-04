@@ -8,6 +8,7 @@
     background-color: #fff;
     border-radius: 12px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
   }
    
   h2 {
@@ -24,6 +25,7 @@
     width: 100%;
     border-collapse: collapse;
     border-radius: 12px;
+    
   }
    
   th, td {
@@ -31,6 +33,11 @@
     text-align: left;
     border-bottom: 1px solid #ddd;
   }
+  tbody{
+    overflow: scroll;
+    max-height: 200px;
+  }
+  
    td:hover{
     color:#0d67a3
    }

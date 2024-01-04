@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ModalService } from '../../../Services/modal.service';
 import { AppService } from '../../../Services/app-service.service';
 import { environment } from '../../../../environments/environment.development';
-import { error } from 'console';
-import { HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-project-details',
@@ -45,8 +44,7 @@ export class ProjectDetailsComponent implements OnInit{
       this.ngOnInit()
       
   },(error)=>{
-    console.log(error);
-    
+    console.log(error);    
     
   }
   )

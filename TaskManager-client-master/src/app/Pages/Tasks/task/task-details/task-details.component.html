@@ -54,7 +54,11 @@
 
     <div class="task-info">
         <strong>Project:</strong>
-        <span>{{task.project.project_name}}</span>
+        <span>{{task.project_name}}</span>
+    </div>
+    <div class="task-info">
+        <strong>Client:</strong>
+        <span>{{task.client}}</span>
     </div>
     <div class="task-info">
         <strong>Category:</strong>
@@ -65,5 +69,8 @@
         <span>{{task.type}}</span>
     </div>
 
+</div>
+<div class="comment">
+    <app-comments [taskId]="task.id"> </app-comments>
 </div>
 

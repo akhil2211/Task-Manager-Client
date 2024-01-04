@@ -4,22 +4,22 @@
     <div>        
          <input type="text" placeholder="Find Tasks" id="searchBar" (input)="searchTask($event)">
          <i class="fa-solid fa-magnifying-glass search-icon" ></i>
-      <button (click)="showCreateTask()">Create Task<span>+</span></button>
+         @if(showAssignedTasks){ <button (click)="showCreateTask()">Create Task<span>+</span></button>}
     </div>
-  
+    @if(showAssignedTasks){
       <h1>Tasks You Assigned</h1>
     
-    <app-list-task [taskName]="searchTaskName" (viewEvent)="viewEventDetails($event)"> </app-list-task>
-     
+    <app-list-task [taskName]="searchTaskName" (viewEvent)="viewEventDetails($event)"> </app-list-task>}
+     @if(showMyTasks){
       <div class="second-container">
         <h1>Tasks Assigned To You</h1>
         <app-my-tasks [taskName]="searchTaskName" (viewEvent)="viewEventDetails($event)"> </app-my-tasks>
-      </div>
+      </div>}
     </div>
   }
 
 @case(true){
-  <app-task-details [task]="taskDetails"></app-task-details > 
+  <app-task-details [taskInfo]="taskDetails"></app-task-details > 
  }
 
 @default{
@@ -29,15 +29,15 @@
          <i class="fa-solid fa-magnifying-glass search-icon" ></i>
       <button (click)="showCreateTask()">Create Task<span>+</span></button>
     </div>
-  
+    @if(showAssignedTasks){
       <h1>Tasks You Assigned</h1>
     
-    <app-list-task>[taskName]="searchTaskName" (viewEvent)="viewEventDetails($event)" </app-list-task>
-   
+    <app-list-task>[taskName]="searchTaskName" (viewEvent)="viewEventDetails($event)" </app-list-task>}
+    @if(showMyTasks){
     <div class="second-container">
       <h1>Tasks Assigned To You</h1>    
       <app-my-tasks> </app-my-tasks>
-    </div>
+    </div>}
   </div>
 }
 }

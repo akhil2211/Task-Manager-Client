@@ -17,7 +17,12 @@ export class MyTasksComponent implements OnInit,OnChanges{
    @Input() taskName:string|null=null;
 
   showTaskDetails(task:any){
-    this.viewEvent.emit(task);}
+    this.viewEvent.emit({
+      data:task,
+      taskType:"MyTask"
+    });
+  }
+
     constructor(private taskService: AppService,private api:AppService) { }
     ngOnChanges(changes: SimpleChanges): void {
       if(this.taskName){

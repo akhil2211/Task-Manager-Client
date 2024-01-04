@@ -1,0 +1,36 @@
+ 
+    <div class="comments-section">
+        <div class="comment-header">
+            <h3>Activity</h3>
+        </div>
+        <form [formGroup]="commForm" action="/submit" method="post">
+         <div class="comment">
+            <i class="fa-regular fa-comment"></i>   
+             
+            <textarea type="text" formControlName="comm_body" name="comm_body" placeholder="Enter Remarks..." required>  </textarea>
+           <div class="add-button"> <button (click)="addComment()" type="submit"> + </button>    </div>
+                          
+              @if (submit) {
+                @if(!commForm.controls["comm_body"].valid && commForm.controls["comm_body"].dirty || commForm.controls["comm_body"].touched){
+                  <div class="validation-error">
+                    @if(commForm.controls["comm_body"].errors?.["required"]){
+                      *Required Field     }                          
+                  </div>
+                }
+            } 
+         
+            </div>
+            <div class="comment-list">
+                @for(comment of comments; track comment.id) {
+                    <div class="comment-body"> {{comment.comm_body}}</div>
+                    <div class="comment-writer"> {{comment.user.firstname}} {{comment.user.lastname}}</div>
+                    <div class="comment-date"> {{comment.date}}</div>
+                    <div class="comment-time"> {{comment.time}}</div>
+                  }
+                
+            </div>
+        </form>
+        </div>
+
+ 
+

@@ -3,16 +3,18 @@ import { CommonModule } from '@angular/common';
 import { AppService } from '../../../../Services/app-service.service';
 import { environment } from '../../../../../environments/environment.development';
 import { HttpHeaders } from '@angular/common/http';
+import { CommentsComponent } from './comments/comments.component';
 
 @Component({
   selector: 'app-task-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,CommentsComponent],
   templateUrl: './task-details.component.html',
   styleUrl: './task-details.component.scss'
 })
 export class TaskDetailsComponent implements OnInit {
-  @Input() task:any;
+  @Input() taskInfo:any;
+  task:any
   @Output() editSuccessEvent = new EventEmitter<any>()
   @ViewChild("selectStatus") selectStatus:any
   @ViewChild("selectTaskHolder") selectTaskHolder:any
@@ -30,10 +32,11 @@ export class TaskDetailsComponent implements OnInit {
 
   constructor (private api:AppService){}
   ngOnInit(): void {
+    this.task=this.taskInfo.data
     this.user=localStorage.getItem("user");   
     console.log(this.user);
      this.userRole=JSON.parse(this.user).role.roles;
-     if(this.userRole=="GM"){
+     if(this.taskInfo.taskType=="AssignedTask"){
       this.showRequiredDetails=true;
      }
      else{

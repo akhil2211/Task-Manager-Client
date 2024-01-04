@@ -17,18 +17,38 @@ import { MyTasksComponent } from './my-tasks/my-tasks.component';
 })
  
 export class TaskComponent implements OnInit {
+  user: any;
+  userRole: any;
 
   constructor(private modalService:ModalService,private viewContainerRef:ViewContainerRef,private api:AppService){}
 
   showTaskDetails:boolean=false;
   taskDetails:any;
   searchTaskName:string="";
+  showMyTasks:boolean=false;
+  showAssignedTasks:boolean=false;
 
  showCreateTask() { 
   this.modalService.setRootViewContainerRef(this.viewContainerRef);
   this.modalService.addDynamicComponent("createTask", null);
 }
   ngOnInit(): void {
+    this.user=localStorage.getItem("user");   
+    console.log(this.user);
+     this.userRole=JSON.parse(this.user).role.roles;
+     if(this.userRole=="GM"){
+      this.showMyTasks=false;
+     }
+     else{
+      this.showMyTasks=true;
+     }
+     if(this.userRole=="USER"){
+      this.showAssignedTasks=false;
+     }
+     else{
+      this.showAssignedTasks=true;
+     }
+
     this.showTaskDetails=false;
   }
   viewEventDetails(event:any){
