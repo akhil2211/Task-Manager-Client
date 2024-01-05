@@ -23,6 +23,7 @@
             <div class="comment-list">
                 @for(comment of comments; track comment.id) {
                     <div class="comment-body"> {{comment.comm_body}}</div>
+                    <button class="remove-button" (click)="removeComment(comment.id)"><i class="fa-solid fa-trash"></i></button>
                     <div class="comment-writer"> {{comment.user.firstname}} {{comment.user.lastname}}</div>
                     <div class="comment-date"> {{comment.date}}</div>
                     <div class="comment-time"> {{comment.time}}</div>

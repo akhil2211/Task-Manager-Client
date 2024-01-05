@@ -4,6 +4,7 @@
     <div>        
          <input type="text" placeholder="Find Tasks" id="searchBar" (input)="searchTask($event)">
          <i class="fa-solid fa-magnifying-glass search-icon" ></i>
+         
          @if(showAssignedTasks){ <button (click)="showCreateTask()">Create Task<span>+</span></button>}
     </div>
     @if(showAssignedTasks){

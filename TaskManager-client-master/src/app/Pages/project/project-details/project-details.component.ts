@@ -1,20 +1,25 @@
-import { Component, Input, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewContainerRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalService } from '../../../Services/modal.service';
 import { AppService } from '../../../Services/app-service.service';
 import { environment } from '../../../../environments/environment.development';
 import { HttpHeaders } from '@angular/common/http';
+import { ProjectTasksComponent } from './project-tasks/project-tasks.component';
 
 @Component({
   selector: 'app-project-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,ProjectTasksComponent],
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.scss'
 })
 export class ProjectDetailsComponent implements OnInit{
   @Input() project:any;
+  @Output() viewEvent=new EventEmitter<any>()
   userList:any[]=[]
+  taskDetails: any;
+  isTaskList:boolean=false;
+  taskList:any[]=[];
 
   constructor(private modalService:ModalService,private viewContainerRef:ViewContainerRef,private api:AppService){}
 
@@ -38,7 +43,6 @@ export class ProjectDetailsComponent implements OnInit{
   onRemoveClick(userId:number){
     const headers=new HttpHeaders().set("ResponseType","text");
 
-
     this.api.deleteReturn(`${environment.apiUrl}/api/v1/gm/removeMember/${userId}/${this.project.id}`,{headers}).subscribe((data:any)=>{
       console.log(data);
       this.ngOnInit()
@@ -48,6 +52,19 @@ export class ProjectDetailsComponent implements OnInit{
     
   }
   )
-
 }
+
+showProjectTasks(taskDetails:any){
+
+  this.api.getReturn(`${environment.apiUrl}/api/v1/project/task/${this.project.id}/task`).subscribe((data:any)=>{
+    this.taskList = data
+    this.isTaskList=true;
+    console.log(data);
+  },(error)=>{
+    console.log(error);      
+  })  
+  
+    this.viewEvent.emit(this.taskList);
+    
+  }
 }

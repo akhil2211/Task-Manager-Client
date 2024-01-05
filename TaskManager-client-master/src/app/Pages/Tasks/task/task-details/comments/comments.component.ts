@@ -14,6 +14,7 @@ import { DataService } from '../../../../../Services/data.service';
   styleUrl: './comments.component.scss'
 })
 export class CommentsComponent implements OnInit {
+
   comments: any[] = [];
   @Input() taskId: any;
   commForm !: FormGroup ;
@@ -31,6 +32,12 @@ export class CommentsComponent implements OnInit {
   }
 
   addComment(){
+
+    if(this.commForm.invalid){
+      this.commForm.markAllAsTouched();
+      console.log(this.submit);
+      return;
+        }
     const formValues= this.commForm.getRawValue(); 
 
     const reqBody= {
@@ -61,10 +68,24 @@ export class CommentsComponent implements OnInit {
       (error) => {
         console.error('Error fetching comments.', error);
       }
-    );
-    
+    );  
     
   }
+    
+  removeComment(commentId:number){
+    const headers=new HttpHeaders().set("ResponseType","text");
+
+    this.commentService.deleteReturn(`${environment.apiUrl}/api/v1/comments/delete/${commentId}`,{headers}).subscribe((data:any)=>{
+      console.log(data);
+      this.ngOnInit();
+         
+  },(error)=>{
+    console.log(error);    
+    
+  }
+  )
+
+}
   
 }
 

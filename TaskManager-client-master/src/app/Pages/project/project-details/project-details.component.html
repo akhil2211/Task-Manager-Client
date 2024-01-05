@@ -1,4 +1,4 @@
-
+@if(!isTaskList){
     <div class="project-head">
         <h2>{{project.project_name}}</h2>
     </div>
@@ -7,7 +7,7 @@
         <div class="project-info">
             <strong>Project Code:</strong>
             <span>{{project.project_code}}</span>
-            <div class="tasks-button"><button> Show Tasks</button></div>
+            <div class="tasks-button" (click)="showProjectTasks(taskDetails)"><button> Show Tasks </button></div>
         </div>
      
         <div class="project-info">
@@ -52,4 +52,7 @@
         </div>
    
     </div>
- 
+}
+@else{
+<app-project-tasks [projectName]="project.project_name" [taskList]="taskList"> </app-project-tasks>
+}
