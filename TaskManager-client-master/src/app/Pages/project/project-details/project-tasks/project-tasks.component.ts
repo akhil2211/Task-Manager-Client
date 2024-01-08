@@ -10,8 +10,8 @@ import { CommonModule } from '@angular/common';
 })
 export class ProjectTasksComponent implements OnInit {
    @Input() taskList:any[]=[]
-   @Input() projectName:any   
    @Output() viewEvent=new EventEmitter<any>()
+   @Input() projectName: any;
 
    
   showTaskDetails(task:any){

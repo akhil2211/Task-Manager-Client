@@ -1,3 +1,4 @@
+@if(!isTaskHistoryOpen) {
 <div class="task-head">
     <h2>{{task.t_title}}</h2>
 </div>
@@ -68,9 +69,15 @@
         <strong>Priority:</strong>
         <span>{{task.type}}</span>
     </div>
-
+    <div class="task-history-area">
+        <div class="task-history-button" (click)="showTaskHistory(task)"><button> Task Workflow </button></div>
+    </div>
+    
 </div>
 <div class="comment">
     <app-comments [taskId]="task.id"> </app-comments>
 </div>
-
+}
+@else {
+    <app-task-history [historyList]="taskHistoryData"></app-task-history>
+}

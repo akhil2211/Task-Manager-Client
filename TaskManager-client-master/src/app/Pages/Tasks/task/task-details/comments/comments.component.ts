@@ -20,6 +20,8 @@ export class CommentsComponent implements OnInit {
   commForm !: FormGroup ;
   submit:boolean=false;
   lastMessageTime: any;
+  user: any;
+  userId: any;
   
  
   constructor(private commentService: AppService,private formBuilder : FormBuilder,private dataService:DataService) { }
@@ -29,6 +31,12 @@ export class CommentsComponent implements OnInit {
      this.commForm=this.formBuilder.group({
      comm_body:["",Validators.required]       
    })
+     
+   if(typeof localStorage!=="undefined" && localStorage.getItem("user")){
+    this.user = localStorage.getItem("user");
+    this.userId = JSON.parse(this.user).id;
+   }
+
   }
 
   addComment(){
@@ -59,9 +67,12 @@ export class CommentsComponent implements OnInit {
     this.commentService.getReturn(`${environment.apiUrl}/api/v1/comments/all/${this.taskId}`,).subscribe(
       (data: any) => {
         this.comments = data;
-        this.comments.map((comment)=>{
+       
+        
+        this.comments.map((comment:any)=>{
           comment.date=this.dataService.extractDate(comment.comm_created_at)
           comment.time=this.dataService.HHMMFormatter(comment.comm_created_at)
+          console.log(comment.user.id,this.userId);
         })
         
       },

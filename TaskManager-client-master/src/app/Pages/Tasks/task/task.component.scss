@@ -15,6 +15,32 @@ h1{
 .search-icon{
   margin-left: 7px;
 }
+select#status{
+  border-radius: 7px;
+  border: 1px solid #ccc;
+  width: 100px;
+  padding: 2px;
+}
+
+select#receiver{
+  border-radius: 7px;
+  border: 1px solid #ccc;
+  width: 150px;
+  padding: 2px;
+}
+.filter-title{
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+.filter-bar{
+  display:flex;
+  gap:10px;
+  float: right;
+  margin-right: 50px;
+  padding: 10px;
+  border-radius: 5px;
+}
 app-task-details{
 
   width: 100%;

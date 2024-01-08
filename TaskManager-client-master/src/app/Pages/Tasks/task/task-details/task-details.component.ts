@@ -4,17 +4,20 @@ import { AppService } from '../../../../Services/app-service.service';
 import { environment } from '../../../../../environments/environment.development';
 import { HttpHeaders } from '@angular/common/http';
 import { CommentsComponent } from './comments/comments.component';
+import { TaskHistoryComponent } from './task-history/task-history.component';
 
 @Component({
   selector: 'app-task-details',
   standalone: true,
-  imports: [CommonModule,CommentsComponent],
+  imports: [CommonModule,CommentsComponent,TaskHistoryComponent],
   templateUrl: './task-details.component.html',
   styleUrl: './task-details.component.scss'
 })
 export class TaskDetailsComponent implements OnInit {
+
   @Input() taskInfo:any;
   task:any
+  @Output() viewEvent=new EventEmitter<any>()
   @Output() editSuccessEvent = new EventEmitter<any>()
   @ViewChild("selectStatus") selectStatus:any
   @ViewChild("selectTaskHolder") selectTaskHolder:any
@@ -29,6 +32,9 @@ export class TaskDetailsComponent implements OnInit {
   showRequiredDetails:boolean=false
   isAssignedToOptionOpened:boolean=false
   projectUsers:any[] =[]
+  taskHistoryData: any;
+  isTaskHistoryOpen:any;
+
 
   constructor (private api:AppService){}
   ngOnInit(): void {
@@ -47,6 +53,7 @@ export class TaskDetailsComponent implements OnInit {
     console.log(this.task);
     this.status=this.task.t_status
     this.asignedTo=this.task.firstname+" "+this.task.lastname
+    
   }
   changeStatus(){
     this.isStatusOptionOpened = true
@@ -102,7 +109,22 @@ export class TaskDetailsComponent implements OnInit {
     })
   }
 
+  showTaskHistory(task:any) {
 
-}
+        this.api.getReturn(`${environment.apiUrl}/api/v1/project/task/${this.task.id}/taskHistory`).subscribe((data:any)=>{
+        this.taskHistoryData = data
+        this.isTaskHistoryOpen=true;
+    
+        console.log(data);
+      },(error)=>{
+        console.log(error);      
+      })  
+      
+        this.viewEvent.emit(this.taskHistoryData);
+        
+      }
+    }
+
+
 
 
