@@ -55,5 +55,11 @@
           </tr>
         }
       </tbody>
-    </table>
+    </table>      
   </div>
+  @if (taskList.length==0) {
+    <div class="empty-field">
+      No Tasks Under {{projectName}} 
+    </div>
+  }
+ 

@@ -119,7 +119,8 @@ export class TaskDetailsComponent implements OnInit {
       },(error)=>{
         console.log(error);      
       })  
-      
+       
+   
         this.viewEvent.emit(this.taskHistoryData);
         
       }

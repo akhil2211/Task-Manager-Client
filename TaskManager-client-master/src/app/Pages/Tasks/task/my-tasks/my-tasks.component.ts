@@ -15,6 +15,7 @@ export class MyTasksComponent implements OnInit,OnChanges{
    mytasks:any[]=[];
    @Output() viewEvent=new EventEmitter<any>()
    @Input() taskName:string|null=null;
+  newStatus: any;
 
   showTaskDetails(task:any){
     this.viewEvent.emit({
@@ -57,6 +58,19 @@ export class MyTasksComponent implements OnInit,OnChanges{
       });
       
     
+  }
+  onFilterStatus(event:any){
+    this.newStatus = event.target.value;
+    console.log(this.newStatus);
+    
+      this.api.getReturn(`${environment.apiUrl}/api/v1/project/task/${this.newStatus}/myTaskStatus`).subscribe((data:any)=>{
+      console.log(data);
+      this.mytasks = data;
+            
+    },(error)=>{
+      console.log(error);
+      
+    })
   }
 
 }

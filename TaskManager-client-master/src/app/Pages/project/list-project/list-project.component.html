@@ -1,3 +1,19 @@
+
+<div class="projects-table"> 
+<div class="filter-bar">
+  <div class="filter-title">
+   Filter By :
+  </div>     
+   <label for="statusFilter"></label>
+  <select name="status" id="status" (change)="onFilterStatus($event)">        
+   <option value="" disabled selected>Status</option>
+   <option value="Ongoing">Ongoing</option>
+   <option value="Initiated">Initiated</option>
+   <option value="Completed">Completed</option>
+   <option value="In Progress">In Progress</option>
+ </select>
+</div>
+
     <table>
       <thead>
         <tr>
@@ -24,4 +40,4 @@
         }
       </tbody>
     </table>
-  
+</div>

@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../../../environments/environment.development';
 import { AppService } from '../../../../Services/app-service.service';
-import { HttpParams } from '@angular/common/http';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-list-task',
@@ -16,6 +16,11 @@ export class ListTaskComponent implements OnInit,OnChanges {
   tasks: any[] = [];
   @Output() viewEvent=new EventEmitter<any>()
   @Input() taskName:string|null=null;
+  newStatus: any;
+  selectStatus: any;
+  task: any;
+  status: any;
+  isStatusFilterOpened:boolean=false
 
   showTaskDetails(task:any){
     this.viewEvent.emit({
@@ -58,6 +63,20 @@ export class ListTaskComponent implements OnInit,OnChanges {
         console.error('Error fetching tasks:', error);
       }
     );
+  }
+
+  onFilterStatus(event:any){
+    this.newStatus = event.target.value;
+    console.log(this.newStatus);
+    
+      this.api.getReturn(`${environment.apiUrl}/api/v1/project/task/${this.newStatus}/assignedTaskStatus`).subscribe((data:any)=>{
+      console.log(data);
+      this.tasks = data;
+            
+    },(error)=>{
+      console.log(error);
+      
+    })
   }
 
   

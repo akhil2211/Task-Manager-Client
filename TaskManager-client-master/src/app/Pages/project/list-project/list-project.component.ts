@@ -12,6 +12,9 @@ import { HttpHeaders, HttpParams } from '@angular/common/http';
   styleUrl: './list-project.component.scss'
 })
 export class ListProjectComponent implements OnInit,OnChanges {
+onFilterStatus($event: Event) {
+throw new Error('Method not implemented.');
+}
 
   projects: any[] = [];
   @Input() projectName:string|null=null;

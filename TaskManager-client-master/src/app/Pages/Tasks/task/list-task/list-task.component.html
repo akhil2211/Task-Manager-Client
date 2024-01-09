@@ -1,5 +1,30 @@
 
     <div class="tasks-table"> 
+      <div class="filter-bar">
+        <div class="filter-title">
+         Filter By :
+        </div> 
+          <div class="name-filter">
+         <label for="assignedToFilter"></label>
+       
+       <select name="receiver" id="receiver" >
+         <option value="" disabled selected>Assigned To</option>
+         <option value="a1">A1</option>
+         <option value="a2">A1</option>
+         <option value="a3">A3</option>
+       </select>
+        </div>
+         <label for="statusFilter"></label>
+       <select name="status" id="status" (change)="onFilterStatus($event)">        
+         <option value="" disabled selected>Status</option>
+         <option value="Active">Active</option>
+         <option value="Pending">Pending</option>
+         <option value="Completed">Completed</option>
+         <option value="Under Review">Under Review</option>
+       </select>
+       
+       </div>
+     
     <table>
       <thead>
         <tr>
@@ -26,4 +51,7 @@
         }
       </tbody>
     </table>
+    @if (tasks.length==0) {
+    <div class="empty-field">No Tasks Available</div>
+    }
   </div>

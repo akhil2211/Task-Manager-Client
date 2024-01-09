@@ -9,30 +9,7 @@
     </div>
     @if(showAssignedTasks){
       <h1>Tasks You Assigned</h1>
-      <div class="filter-bar">
-       <div class="filter-title">
-        Filter By :
-       </div> 
-         <div class="name-filter">
-        <label for="assignedToFilter"></label>
       
-      <select name="receiver" id="receiver" >
-        <option value="" disabled selected>Assigned To</option>
-        <option value="a1">A1</option>
-        <option value="a2">A1</option>
-        <option value="a3">A3</option>
-      </select>
-       </div>
-        <label for="statusFilter"></label>
-      <select name="status" id="status">        
-        <option value="" disabled selected>Status</option>
-        <option value="s1">S1</option>
-        <option value="s2">S2</option>
-        <option value="s3">S3</option>
-      </select>
-      
-      </div>
-    
     <app-list-task [taskName]="searchTaskName" (viewEvent)="viewEventDetails($event)"> </app-list-task>}
      @if(showMyTasks){
       <div class="second-container">

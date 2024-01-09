@@ -112,3 +112,11 @@ select#receiver{
     border-radius: 50%;
     background-color: green;
   }
+  .empty-field{
+    display: flex;
+    justify-content: center;
+    padding:10px; 
+    font-weight: bold;
+    font-style: italic;   
+    border-bottom: 1px solid #ddd;
+}

@@ -8,20 +8,7 @@
       <button (click)="showCreateProject()">Create <span>+</span></button>
     </div>
     <h1>Project List</h1>
-    <div class="filter-bar">
-      <div class="filter-title">
-       Filter By :
-      </div>        
-       <label for="statusFilter"></label>
-     <select name="status" id="status">        
-       <option value="" disabled selected>Status</option>
-       <option value="s1">S1</option>
-       <option value="s2">S2</option>
-       <option value="s3">S3</option>
-     </select>
-     
-     </div>
-   
+      
     <app-list-project [projectName]="searchName" (viewEvent)="viewEventDetails($event)"></app-list-project>
  
     

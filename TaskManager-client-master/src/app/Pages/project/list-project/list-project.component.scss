@@ -2,12 +2,34 @@
 .projects-table {
     width: 100%;
     display: flex;
+    flex-direction: column;
     margin:20px;
     align-items: center;
     justify-content: center;
     background-color: #fff;
     border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
+  }
+  select#status{
+    border-radius: 7px;
+    border: 1px solid #ccc;
+    width: 113px;
+    padding: 2px;
+  }
+
+  .filter-title{
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+  }
+  .filter-bar{
+    display:flex;
+    width:100%;
+    justify-content: right;
+    gap:10px;
+    float: right;
+    margin-right: 50px;    
+    border-radius: 5px;
   }
    
   h2 {
