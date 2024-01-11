@@ -12,13 +12,11 @@ import { HttpHeaders, HttpParams } from '@angular/common/http';
   styleUrl: './list-project.component.scss'
 })
 export class ListProjectComponent implements OnInit,OnChanges {
-onFilterStatus($event: Event) {
-throw new Error('Method not implemented.');
-}
 
   projects: any[] = [];
   @Input() projectName:string|null=null;
   @Output() viewEvent=new EventEmitter<any>()
+  newStatus: any;
  
   constructor(private projectService: AppService,private api:AppService) { }
   ngOnChanges(changes: SimpleChanges): void {
@@ -72,4 +70,22 @@ throw new Error('Method not implemented.');
   this.viewEvent.emit(project);
   }
 
+  onFilterStatus(event:any) {
+       this.newStatus = event.target.value;
+       console.log(this.newStatus);
+       
+     if(event.target.value=="Default"){
+        this.loadProjects();
+       }
+     else{
+      this.api.getReturn(`${environment.apiUrl}/api/v1/gm/${this.newStatus}/ProjectStatus`).subscribe((data:any)=>{
+      console.log(data);
+      this.projects = data;
+            
+    },(error)=>{
+      console.log(error);
+      
+    })
+    }
+  }
 }

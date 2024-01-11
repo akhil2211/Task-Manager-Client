@@ -1,4 +1,4 @@
-
+<!-- 
 <div class="history-table">
   <table>
     <th>Previous Task Holder</th>
@@ -19,4 +19,23 @@
     }
 
   </table>
+</div> -->
+
+<div class="timeline">
+  @for(history of historyList; track history.id) {
+    <div class="dot">
+      <span>{{ history.username}}</span>
+      <span>{{ history.unassigned_date}}</span>
+      <span>{{ history.unassigned_time}}</span>
+      <span>{{history.assigned_date}}</span>
+      <span>{{history.assigned_time}}</span>
+    </div>
+  }
+</div>
+
+<div class="popup" id="popup">
+  <span class="close-btn" onclick="closePopup()">X</span>
+  <p id="popup-username"></p>
+  <p id="popup-unassigned"></p>
+  <p id="popup-assigned"></p>
 </div>

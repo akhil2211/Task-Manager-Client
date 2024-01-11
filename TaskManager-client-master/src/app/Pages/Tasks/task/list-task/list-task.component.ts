@@ -16,11 +16,14 @@ export class ListTaskComponent implements OnInit,OnChanges {
   tasks: any[] = [];
   @Output() viewEvent=new EventEmitter<any>()
   @Input() taskName:string|null=null;
-  newStatus: any;
   selectStatus: any;
   task: any;
   status: any;
   isStatusFilterOpened:boolean=false
+  projectUsers: any;
+  assignToList:any[]=[]
+  assignedTo: any;
+  selectedStatus: any;
 
   showTaskDetails(task:any){
     this.viewEvent.emit({
@@ -43,12 +46,15 @@ export class ListTaskComponent implements OnInit,OnChanges {
         console.log(error);      
       })
       }
+      else{
+        this.loadTasks();
+      }
     }
    
   }
  
   ngOnInit(): void {
-    this.loadTasks();
+    this.loadTasks();   
   }
  
   loadTasks() {
@@ -57,6 +63,10 @@ export class ListTaskComponent implements OnInit,OnChanges {
       (data: any) => {
         this.tasks = data;
         console.log(this.tasks);
+        this.tasks.map((task)=>{
+          if (this.assignToList.indexOf(task.firstname+" "+task.lastname)==-1) this.assignToList.push(task.firstname+" "+task.lastname);
+        }
+        )
         
       },
       (error) => {
@@ -65,11 +75,15 @@ export class ListTaskComponent implements OnInit,OnChanges {
     );
   }
 
-  onFilterStatus(event:any){
-    this.newStatus = event.target.value;
-    console.log(this.newStatus);
+  onFilterAssigned(event:any){
+    this.assignedTo = event.target.value;
+    console.log(this.assignedTo);
+    if(event.target.value=="Default"){
+      this.loadTasks();
+    }
+    else{
     
-      this.api.getReturn(`${environment.apiUrl}/api/v1/project/task/${this.newStatus}/assignedTaskStatus`).subscribe((data:any)=>{
+      this.api.getReturn(`${environment.apiUrl}/api/v1/project/task/filterTasks/{this.assignedTo}`).subscribe((data:any)=>{
       console.log(data);
       this.tasks = data;
             
@@ -79,5 +93,26 @@ export class ListTaskComponent implements OnInit,OnChanges {
     })
   }
 
-  
+
+  }
+
+  onFilterStatus(event:any){
+    this.selectedStatus = event.target.value;
+    console.log(this.selectedStatus);
+    if(event.target.value=="Default"){
+      this.loadTasks();
+    }
+    else{
+    
+      this.api.getReturn(`${environment.apiUrl}/api/v1/project/task/${this.selectedStatus}/assignedTaskStatus`).subscribe((data:any)=>{
+      console.log(data);
+      this.tasks = data;
+            
+    },(error)=>{
+      console.log(error);
+      
+    })
+  }
+
+}
 }

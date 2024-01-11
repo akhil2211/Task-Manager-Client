@@ -41,7 +41,7 @@ export class TaskDetailsComponent implements OnInit {
     this.task=this.taskInfo.data
     this.user=localStorage.getItem("user");   
     console.log(this.user);
-     this.userRole=JSON.parse(this.user).role.roles;
+     this.userRole=JSON.parse(this.user).roles;
      if(this.taskInfo.taskType=="AssignedTask"){
       this.showRequiredDetails=true;
      }

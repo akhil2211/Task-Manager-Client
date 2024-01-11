@@ -22,12 +22,11 @@
             </div>
             <div class="comment-list">
                 @for(comment of comments; track comment.id) {
+                  <div class="comment-writer"> {{comment.user.firstname}} {{comment.user.lastname}}</div>
                     <div class="comment-body"> {{comment.comm_body}}
                       @if (userId==comment.user.id) {
                     <button class="remove-button" (click)="removeComment(comment.id)"><i class="fa-solid fa-trash"></i></button>}
-                    </div>
-
-                    <div class="comment-writer"> {{comment.user.firstname}} {{comment.user.lastname}}</div>
+                    </div>                  
                      <div class="comment-date"> {{comment.date}}
                         <div class="comment-time"> {{comment.time}}</div>
                     </div>

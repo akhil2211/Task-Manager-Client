@@ -62,9 +62,14 @@ export class MyTasksComponent implements OnInit,OnChanges{
   onFilterStatus(event:any){
     this.newStatus = event.target.value;
     console.log(this.newStatus);
-    
+    if(event.target.value=="Default"){
+      this.loadMyTasks();
+    }
+    else{
       this.api.getReturn(`${environment.apiUrl}/api/v1/project/task/${this.newStatus}/myTaskStatus`).subscribe((data:any)=>{
       console.log(data);
+      
+ 
       this.mytasks = data;
             
     },(error)=>{
@@ -72,5 +77,5 @@ export class MyTasksComponent implements OnInit,OnChanges{
       
     })
   }
-
+  }
 }

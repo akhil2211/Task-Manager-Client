@@ -35,7 +35,7 @@ export class TaskComponent implements OnInit {
   ngOnInit(): void {
     this.user=localStorage.getItem("user");   
     console.log(this.user);
-     this.userRole=JSON.parse(this.user).role.roles;
+     this.userRole=JSON.parse(this.user).roles;
      if(this.userRole=="GM"){
       this.showMyTasks=false;
      }

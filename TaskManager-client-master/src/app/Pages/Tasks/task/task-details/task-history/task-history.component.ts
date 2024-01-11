@@ -12,6 +12,8 @@ import { DataService } from '../../../../../Services/data.service';
 export class TaskHistoryComponent implements OnInit{
   @Input() historyList:any[]=[]  
   @Output() viewEvent=new EventEmitter<any>()
+  showPopupFlag :boolean= false;   
+  selectedHistory: any = {};
 
   constructor(private dataService:DataService){}
  
@@ -22,11 +24,23 @@ export class TaskHistoryComponent implements OnInit{
     history.assigned_date=this.dataService.extractDate(history.assigned_at)
     history.assigned_time=this.dataService.HHMMFormatter(history.assigned_at)
     history.unassigned_date=this.dataService.extractDate(history.unassigned_at)
-    history.unassigned_time=this.dataService.HHMMFormatter(history.unassigned_at)
+    history.unassigned_time=this.dataService.HHMMFormatter(history.unassigned_at) 
  
   })
 
  }
+
+ showPopup(index: number) {
+  this.selectedHistory = this.historyList[index];
+  this.showPopupFlag = true;
 }
+ 
+ closePopup() {
+  this.showPopupFlag = false;
+}
+
+}
+
+
 
 

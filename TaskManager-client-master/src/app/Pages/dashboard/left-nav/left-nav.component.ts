@@ -20,7 +20,7 @@ export class LeftNavComponent implements OnInit {
      
     this.user = localStorage.getItem("user");
     this.userDetails = JSON.parse(this.user);
-    this.userRole=JSON.parse(this.user).role.roles;   
+    this.userRole=JSON.parse(this.user).roles;   
     
 }
  viewComponent(comp:any){

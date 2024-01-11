@@ -15,8 +15,14 @@
         </div>
         <div class="profile-field">
           <label>Role:</label>
-          <span>{{ user.role.roles }}</span>
+          <span>{{ user.roles }}</span>
         </div>
+        @if(!isGm){
+          <div class="profile-field">
+            <label>Reporting Officer:</label>
+            <span>{{ user.Reporting_Officer }}</span>
+          </div>
+        }
       </div>
 </div>
   

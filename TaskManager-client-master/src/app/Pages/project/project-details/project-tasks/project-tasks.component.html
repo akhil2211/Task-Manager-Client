@@ -18,11 +18,13 @@
  </select>
   </div>
    <label for="statusFilter"></label>
- <select name="status" id="status">        
+ <select name="status" id="status" (change)="onFilterStatus($event)">        
    <option value="" disabled selected>Status</option>
-   <option value="s1">S1</option>
-   <option value="s2">S2</option>
-   <option value="s3">S3</option>
+   <option value="Default">Default</option>
+   <option value="Active">Active</option>
+   <option value="Pending">Pending</option>
+   <option value="Completed">Completed</option>
+   <option value="Under Review">Under Review</option>
  </select>
  
  </div>
@@ -40,7 +42,7 @@
       <tbody>
   @for(task of taskList; track task.id) {
     
-          <tr class="task-item" (click)="showTaskDetails(task)">
+          <tr class="task-item">
             <td>{{ task.t_title }}</td>
             <td class="status-item">
               @if (task.t_status == "Completed") {
