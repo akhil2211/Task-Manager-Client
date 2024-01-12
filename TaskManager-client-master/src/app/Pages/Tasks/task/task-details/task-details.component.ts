@@ -27,7 +27,7 @@ export class TaskDetailsComponent implements OnInit {
   newAssignedTo:any
   newStatus:any
   status:any
-  asignedTo:any
+  assignedTo:any
   isStatusOptionOpened:boolean=false
   showRequiredDetails:boolean=false
   isAssignedToOptionOpened:boolean=false
@@ -52,7 +52,7 @@ export class TaskDetailsComponent implements OnInit {
     
     console.log(this.task);
     this.status=this.task.t_status
-    this.asignedTo=this.task.firstname+" "+this.task.lastname
+    this.assignedTo=this.task.firstname+" "+this.task.lastname
     
   }
   changeStatus(){
@@ -61,7 +61,13 @@ export class TaskDetailsComponent implements OnInit {
   changeAssignedTo(){
       this.api.getReturn(`${environment.apiUrl}/api/v1/project/${this.task.project_id}/userlist`).subscribe((data:any)=>{
       this.projectUsers = data
-      this.isAssignedToOptionOpened=true
+      if(this.projectUsers.length!=0){
+
+        this.isAssignedToOptionOpened=true
+      }
+      else{        
+      window.alert("No Task Holder Available.")
+      }
     },(error)=>{
       console.log(error);      
     })
@@ -73,6 +79,12 @@ export class TaskDetailsComponent implements OnInit {
   onChangeAssignedTo(){
     
     this.newAssignedToId = this.selectTaskHolder.nativeElement.value;
+    console.log(this.newAssignedToId,this.assignedTo);
+    
+    if(this.newAssignedTo==this.task.assignedTo){
+      window.alert("Please Assign a new Task Holder!");
+      return
+    }
     const reqBody = {
       newTaskHolderId:this.newAssignedToId
     }
@@ -83,11 +95,11 @@ export class TaskDetailsComponent implements OnInit {
       console.log(data);
       this.isAssignedToOptionOpened=false
       this.newAssignedTo = this.selectTaskHolder.nativeElement.selectedOptions[0].text    
-      this.asignedTo = this.newAssignedTo
+      this.assignedTo = this.newAssignedTo
        
       window.alert("Task Holder Changed.")
     },(error)=>{
-      console.log(error);
+   
     })
   }
   onChangeStatus(){

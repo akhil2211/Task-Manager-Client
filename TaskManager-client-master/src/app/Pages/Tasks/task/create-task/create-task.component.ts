@@ -24,6 +24,7 @@ export class CreateTaskComponent {
   priorityList:any[]=[]
   projects: any[] = [];
   projectUsers:any[] = []
+  minDate: any;
 
 
   constructor(private formBuilder : FormBuilder, private projectService : AppService, private router: Router){}
@@ -54,8 +55,9 @@ export class CreateTaskComponent {
       category_id:[null,Validators.required],
       priority_id:[null,Validators.required]    
    })
+   this.minDate = new Date().toISOString().split('T')[0];
  }
- createTask(){
+ createTask(){  
   
    this.submit=true;
    if(this.taskForm.invalid){
@@ -110,3 +112,5 @@ onProjectChange(event:any){
   }
 }
 }
+
+

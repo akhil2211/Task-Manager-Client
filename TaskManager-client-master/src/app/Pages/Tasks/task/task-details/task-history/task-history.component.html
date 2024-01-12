@@ -1,25 +1,3 @@
-<!-- 
-<div class="history-table">
-  <table>
-    <th>Previous Task Holder</th>
-    <th>Unassigned Date</th>
-    <th>Unassigned Time</th>
-    <th>Assigned Date</th>
-    <th>Assigned Time</th>
-   
-@for(history of historyList; track history.id) {
-    
-    <tr class="task-item">
-      <td>{{ history.username}}</td>
-      <td>{{ history.unassigned_date}}</td>
-      <td>{{ history.unassigned_time}}</td>
-      <td>{{history.assigned_date}}</td>
-      <td>{{history.assigned_time}}</td>
-
-    }
-
-  </table>
-</div> -->
 
 <div class="timeline">
   @for(history of historyList; track history.id) {

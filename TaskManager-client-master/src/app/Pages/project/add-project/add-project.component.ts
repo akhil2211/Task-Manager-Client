@@ -23,6 +23,7 @@ export class AddProjectComponent implements OnInit {
   errorMsg:string | any;
   userDetails:string|any;
   orgId:number|any;
+  minDate: any;
 
   constructor(private formBuilder : FormBuilder, private projectService : AppService, private router: Router){}
    ngOnInit(){
@@ -33,9 +34,9 @@ export class AddProjectComponent implements OnInit {
       project_description:["",Validators.required],
       due_date:["",Validators.required],
       project_status:["",Validators.required],
-      client:["",Validators.required]
-    
+      client:["",Validators.required]    
    })
+   this.minDate = new Date().toISOString().split('T')[0];
  }
  createProject(){
    console.log(this.projectForm);

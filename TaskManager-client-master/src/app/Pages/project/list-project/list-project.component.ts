@@ -26,23 +26,15 @@ export class ListProjectComponent implements OnInit,OnChanges {
         queryParams = queryParams.append("project",this.projectName);
         this.api.getReturn(`${environment.apiUrl}/api/v1/project/searchProject`,{params:queryParams}).subscribe((data:any)=>{
         this.projects=data
+        console.log(this.projects);
       }
       ,(error)=>{
         console.log(error);      
       })
-      }
-      else{
-        this.projectService.getReturn(`${environment.apiUrl}/api/v1/gm/projectList`).subscribe(
-          (data: any) => {
-            this.projects = data;
-            console.log(this.projects);
-            
-          },
-          (error) => {
-            console.error('Error fetching projects:', error);
-          }
-        );
-      }
+      }     
+    }
+    else{
+      this.loadProjects();
     }
   }
  

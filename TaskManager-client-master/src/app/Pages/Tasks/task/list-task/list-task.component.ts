@@ -39,16 +39,17 @@ export class ListTaskComponent implements OnInit,OnChanges {
         queryParams = queryParams.append("task",this.taskName);
         this.api.getReturn(`${environment.apiUrl}/api/v1/project/task/searchTask`,{params:queryParams}).subscribe((data:any)=>{
         this.tasks=data
-        console.log(this.tasks);
-        
+        console.log(this.tasks);        
       }
+
       ,(error)=>{
         console.log(error);      
       })
       }
-      else{
-        this.loadTasks();
-      }
+      
+    }
+    else{
+      this.loadTasks();
     }
    
   }
@@ -78,12 +79,12 @@ export class ListTaskComponent implements OnInit,OnChanges {
   onFilterAssigned(event:any){
     this.assignedTo = event.target.value;
     console.log(this.assignedTo);
-    if(event.target.value=="Default"){
+    if(event.target.value=="Show All"){
       this.loadTasks();
     }
     else{
     
-      this.api.getReturn(`${environment.apiUrl}/api/v1/project/task/filterTasks/{this.assignedTo}`).subscribe((data:any)=>{
+      this.api.getReturn(`${environment.apiUrl}/api/v1/project/task/filterTasks/${this.assignedTo}`).subscribe((data:any)=>{
       console.log(data);
       this.tasks = data;
             
@@ -92,7 +93,6 @@ export class ListTaskComponent implements OnInit,OnChanges {
       
     })
   }
-
 
   }
 

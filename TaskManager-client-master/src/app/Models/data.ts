@@ -15,6 +15,7 @@ export interface User {
     email:String,
     orgId:number
     roleId:number
+    reporting_officer_id:number
 }
 export interface Project{
     project_code:String,

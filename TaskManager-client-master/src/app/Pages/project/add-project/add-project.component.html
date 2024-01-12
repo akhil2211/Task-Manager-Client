@@ -41,7 +41,7 @@
  
 
         <label for="due_date">Due Date:</label>
-        <input type="date" formControlName="due_date" name="projectDate" required>
+        <input type="date" [min]="minDate" formControlName="due_date" name="projectDate" required>
 
           @if (submit) {
             @if(!projectForm.controls["due_date"].valid && projectForm.controls["due_date"].dirty || projectForm.controls["due_date"].touched){

@@ -9,11 +9,13 @@
        
        <select name="receiver" id="receiver" (change)="onFilterAssigned($event)" >
          <option value="" disabled selected>Assigned To</option>
+         <option value="Show All">Show All</option>
         @for(assignTo of assignToList;track $index){
-          <option [value]="assignTo">{{assignTo}}</option>
+            <option [value]="assignTo">{{assignTo}}</option>
         }
        </select>
         </div>
+        
          <label for="statusFilter"></label>
        <select name="status" id="status" (change)="onFilterStatus($event)">        
          <option value="" disabled selected>Status</option>

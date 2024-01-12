@@ -139,9 +139,9 @@
       </div>     
 
         <div class="item">
-          <label for="bossId">Reporting Officer:</label>
+          <label for="boss">Reporting Officer:</label>
 
-      <select id="bossId" name="bossId" formControlName="bossId" name="bossId" required>
+      <select id="boss" name="boss" formControlName="boss" name="boss" required>
         @for (item of users; track $index) {
           <option value={{item.id}}>{{item.firstname}} {{item.lastname}}</option>  
         }
@@ -149,10 +149,10 @@
       </select>
        
       @if (submit){
-      @if(!registerForm.controls["role"].valid && registerForm.controls["role"].dirty ||
-      registerForm.controls["role"].touched){
+      @if(!registerForm.controls["boss"].valid && registerForm.controls["boss"].dirty ||
+       registerForm.controls["boss"].touched){
       <div class="validation-error">
-        @if(registerForm.controls["role"].errors?.["required"]){
+        @if(registerForm.controls["boss"].errors?.["required"]){
         *Required Field
         }
       </div>

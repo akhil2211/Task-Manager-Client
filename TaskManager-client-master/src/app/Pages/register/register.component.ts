@@ -34,7 +34,8 @@ export class RegisterComponent implements OnInit {
       confirmPassword:["",[Validators.required,Validators.pattern("(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}")]],
       email: ["",[Validators.required,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}")]],
       orgId:["",[Validators.required,Validators.pattern("[0-9]*")]],
-      roleId:["",Validators.required]  
+      roleId:["",Validators.required]  ,
+      boss:["",Validators.required]
     })
   }
   userRegister(){
@@ -56,7 +57,8 @@ export class RegisterComponent implements OnInit {
     password:formValues.password,
     email:formValues.email,
     orgId:formValues.orgId,
-    roleId:formValues.roleId    
+    roleId:formValues.roleId,
+    reporting_officer_id:formValues.boss
   }
  
   console.log(userData);
