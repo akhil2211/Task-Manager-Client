@@ -159,23 +159,7 @@
                 <label for="t_status">Status:</label>
               </div>
               <div class="input-container">
-                <select id="taskStatus" name="taskStatus" formControlName="t_status" name="taskStatus" required>
-                  <option value="Active">Active</option>
-                  <option value="Pending">Pending</option>
-                  <option value="Under Review">Under Review</option>
-                  <option value="Completed">Completed</option>
-                </select>
-  
-                @if (submit){
-                @if(!taskForm.controls["t_status"].valid && taskForm.controls["t_status"].dirty ||
-                taskForm.controls["t_status"].touched){
-                <div class="validation-error">
-                  @if(taskForm.controls["t_status"].errors?.["required"]){
-                  *Required Field
-                  }
-                </div>
-                }
-                }
+                <input disabled="disabled" value="Active">
               </div>
             </div>
           </div>

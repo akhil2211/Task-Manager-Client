@@ -1,3 +1,5 @@
+import { Time } from "@angular/common"
+
 export interface Organization {
     org_name:String,
     org_code:String

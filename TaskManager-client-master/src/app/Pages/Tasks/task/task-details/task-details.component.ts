@@ -53,6 +53,7 @@ export class TaskDetailsComponent implements OnInit {
     console.log(this.task);
     this.status=this.task.t_status
     this.assignedTo=this.task.firstname+" "+this.task.lastname
+   
     
   }
   changeStatus(){
@@ -124,10 +125,22 @@ export class TaskDetailsComponent implements OnInit {
   showTaskHistory(task:any) {
 
         this.api.getReturn(`${environment.apiUrl}/api/v1/project/task/${this.task.id}/taskHistory`).subscribe((data:any)=>{
+        console.log(data);
         this.taskHistoryData = data
+        this.taskHistoryData.unshift({
+
+          assigned_at:task.created_at,
+          unassigned_at:null,
+          unassigned_time:null,
+          unassigned_date:null,
+
+          username:this.task.username,
+        })
+        console.log(this.taskHistoryData);
+        
         this.isTaskHistoryOpen=true;
     
-        console.log(data);
+        
       },(error)=>{
         console.log(error);      
       })  

@@ -17,7 +17,7 @@
           <label>Role:</label>
           <span>{{ user.roles }}</span>
         </div>
-        @if(!isGm){
+        @if(!isHigherRole){
           <div class="profile-field">
             <label>Reporting Officer:</label>
             <span>{{ user.Reporting_Officer }}</span>

@@ -63,13 +63,15 @@ export class AddProjectComponent implements OnInit {
  const headers = new HttpHeaders().set('ResponseType','text')
  this.userDetails=localStorage.getItem("user");
 
- this.orgId=JSON.parse(this.userDetails).organization.id;
+ this.orgId=JSON.parse(this.userDetails).org_id;
  this.projectService.postReturn(`${environment.apiUrl}/api/v1/gm/${this.orgId}/create`, projectData,{headers}).subscribe((resp:any)=>{
    console.log("Project Created Successfully",resp);
      this.projectSuccess=true;
      window.alert("Project Created Successfully!")
      this.projectForm.reset();
-     console.log(resp.response);    
+     console.log(resp.response);   
+ },(error)=>{
+  this.errorMsg="Project Name  or Project Code already exists!"     
   })
   
   this.submit=false;

@@ -6,6 +6,7 @@ import { environment } from '../../../../../environments/environment.development
 import { Project, Task } from '../../../../Models/data';
 import { AppService } from '../../../../Services/app-service.service';
 import { Router } from '@angular/router';
+import { error } from 'console';
 
 @Component({
   selector: 'app-create-task',
@@ -25,12 +26,17 @@ export class CreateTaskComponent {
   projects: any[] = [];
   projectUsers:any[] = []
   minDate: any;
+  user: any;
+  userRole: any;
 
 
   constructor(private formBuilder : FormBuilder, private projectService : AppService, private router: Router){}
    ngOnInit(){
+    this.user=localStorage.getItem("user");   
+    console.log(this.user);
+    this.userRole=JSON.parse(this.user).roles;
 
-    this.projectService.getReturn(`${environment.apiUrl}/api/v1/gm/projectList`).subscribe(
+    this.projectService.getReturn(`${environment.apiUrl}/api/v1/user/projects`).subscribe(
       (data: any) => {
         this.projects = data;
         console.log(this.projects);        
@@ -86,10 +92,14 @@ export class CreateTaskComponent {
      window.alert("Task Created Successfully!")
      this.taskCreateSuccess.reset();
      console.log(resp.response);    
+  },(error)=>{
+    this.errorMsg="Task Code  or Task Title already exists!"    
+
   })
   
   this.submit=false;
 }
+
 getTaskCategory(){
   this.projectService.getReturn(`${environment.apiUrl}/api/v1/project/task/category`).subscribe((data:any)=>{
     this.categoryList = data
@@ -100,6 +110,7 @@ getTaskPriority(){
     this.priorityList = data
   },(error)=>console.log(error))
 }
+
 
 onProjectChange(event:any){
   const projectId = event.target.value

@@ -53,8 +53,10 @@ body {
 }
 
 .project-success {
-    color: green;
-    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    color: rgb(224, 43, 43);
+    margin: 10px;
 }
 
 button {

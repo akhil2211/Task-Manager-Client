@@ -17,6 +17,7 @@ export class ProjectTasksComponent implements OnInit {
    newStatus: any;
    @Input() project:any;
    initialTasks:any[]=[]
+ 
 
    constructor(private api:AppService){}
  
@@ -26,7 +27,7 @@ export class ProjectTasksComponent implements OnInit {
     this.initialTasks=this.taskList;
     
   }
-  
+   
   onFilterStatus(event:any){
     this.newStatus = event.target.value;
     console.log(this.newStatus);

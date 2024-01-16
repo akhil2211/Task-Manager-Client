@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
    registerSuccess: boolean | any;
    errorMsg:string | any;   
    users:any[] = []
+   reportingofficers: any;
 
 
    constructor(private formBuilder : FormBuilder, private appService : AppService, private router: Router){}
@@ -39,7 +40,7 @@ export class RegisterComponent implements OnInit {
     })
   }
   userRegister(){
-    console.log(this.registerForm);
+    console.log(this.registerForm);  
     
     this.submit=true;
     if(this.registerForm.invalid){
@@ -51,7 +52,7 @@ export class RegisterComponent implements OnInit {
    const formValues=this.registerForm.getRawValue();
 
    const userData : User= {
-    firstname: formValues.firstname,
+    firstname: formValues.firstname.trim(),
     lastname:formValues.lastname,
     username: formValues.username,
     password:formValues.password,
@@ -69,7 +70,9 @@ export class RegisterComponent implements OnInit {
       this.registerSuccess=true;
       window.alert("User Registration Successfull !")
       this.registerForm.reset();
-      console.log(resp.response);    
+      console.log(resp.response); 
+  },(error)=>{
+    this.errorMsg="Username or E-mail already exists!"        
    })
    
    this.submit=false;
@@ -87,5 +90,19 @@ export class RegisterComponent implements OnInit {
     }
   );
 }
+ getReportingOfficers() {
+    
+  this.appService.getReturn(`${environment.apiUrl}/api/v1/admin/getReportingOfficerList`).subscribe(
+    (data: any) => {
+      this.reportingofficers = data;
+      console.log(this.reportingofficers);
+      
+    },
+    (error) => {
+      console.error('Error fetching tasks:', error);
+    }
+  );
+}
+
 
 }

@@ -13,7 +13,7 @@ import { environment } from '../../../environments/environment.development';
 
 export class ProfileComponent implements OnInit {
   user: any = {};
-  isGm: boolean = false;
+  isHigherRole: boolean = false;
 
   constructor(private userService: AppService) {}
 
@@ -24,8 +24,8 @@ export class ProfileComponent implements OnInit {
 
     this.userService.getReturn(apiUrl, userData).subscribe((userData: any) => {
       this.user = userData;
-      if (userData.roles === 'GM') {
-        this.isGm = true;
+      if (userData.roles == 'GM' || userData.roles == "ADMIN") {
+        this.isHigherRole = true;
       }
       
     });

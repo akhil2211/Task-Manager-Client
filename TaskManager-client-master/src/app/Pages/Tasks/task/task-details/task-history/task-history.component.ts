@@ -19,27 +19,23 @@ export class TaskHistoryComponent implements OnInit{
  
  ngOnInit(): void {
    console.log(this.historyList)
-   this.historyList.map((history:any)=>{
 
+   this.historyList.map((history:any)=>{
+    
     history.assigned_date=this.dataService.extractDate(history.assigned_at)
     history.assigned_time=this.dataService.HHMMFormatter(history.assigned_at)
+    if(history.unassigned_at!=null){
     history.unassigned_date=this.dataService.extractDate(history.unassigned_at)
     history.unassigned_time=this.dataService.HHMMFormatter(history.unassigned_at) 
- 
-  })
+ } })
+
 
  }
 
- showPopup(index: number) {
-  this.selectedHistory = this.historyList[index];
-  this.showPopupFlag = true;
-}
  
- closePopup() {
-  this.showPopupFlag = false;
 }
 
-}
+
 
 
 

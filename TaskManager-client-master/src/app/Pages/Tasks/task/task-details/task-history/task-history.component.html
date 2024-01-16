@@ -1,4 +1,4 @@
-
+<!-- 
 <div class="timeline">
   @for(history of historyList; track history.id) {
     <div class="dot">
@@ -16,4 +16,19 @@
   <p id="popup-username"></p>
   <p id="popup-unassigned"></p>
   <p id="popup-assigned"></p>
+</div> -->
+
+<div class="timeline">
+  <div class="dot" >
+   @for( history of historyList; track history.id) {
+    <span>{{ history.username }}</span>}
+  </div>
+</div>
+
+<div class="popup" id="popup">
+  @if(selectedHistory){
+  <span class="close-btn" >X</span>
+  <p id="popup-username">{{ selectedHistory.username }}</p>
+  <p id="popup-unassigned">Unassigned: {{ selectedHistory.unassigned_date }} {{ selectedHistory.unassigned_time }}</p>
+  <p id="popup-assigned">Assigned: {{ selectedHistory.assigned_date }} {{ selectedHistory.assigned_time }}</p>}
 </div>

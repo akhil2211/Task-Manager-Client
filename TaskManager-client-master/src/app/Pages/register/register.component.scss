@@ -2,7 +2,7 @@
 .register-container {
   display: flex;
   margin: 20px;
-  height: 100%;
+  height: fit-content;
   width: 400px;
 }
  
@@ -13,7 +13,19 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
 }
- 
+ .name{
+  display: flex;
+  gap: 20px;
+ }
+ .password{
+  display: flex;
+  gap: 20px;
+ }
+ .role-boss-section{
+  display: flex;
+  gap:82px
+ }
+
 .register-title {
   display: flex;
   justify-content: center;
@@ -48,14 +60,22 @@
   color: green;
   margin-top: 10px;
 }
+.reg-button{
+  display: flex;
+  justify-content: center;
+}
  
 button {
+  display: flex;
+  justify-content: center;
   background-color: #3498db;
   color: #fff;
   padding: 10px;
+  width:140px;
   border: none;
   cursor: pointer;
   border-radius: 5px;
+
 }
  
 button:hover {
@@ -63,7 +83,9 @@ button:hover {
 }
  
 .register-status {
-  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
   color: red;
 }
 

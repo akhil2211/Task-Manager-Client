@@ -7,7 +7,8 @@
       <div class="name">
         <div class="item">
           <label for="firstname">First Name:</label>
-          <input type="text" formControlName="firstname" name="firstname" required>          @if (submit) {
+          <input type="text" formControlName="firstname" name="firstname" maxlength="10" required> 
+         @if (submit) {
           @if(!registerForm.controls["firstname"].valid && registerForm.controls["firstname"].dirty ||
           registerForm.controls["firstname"].touched){
           <div class="validation-error">
@@ -19,13 +20,13 @@
         </div>
         <div class="item">
           <label for="lastname">Last Name:</label>
-          <input type="text" formControlName="lastname" name="lastname">
+          <input type="text" formControlName="lastname" name="lastname" maxlength="10">
 
         </div>
       </div>
       <div class="item">
         <label for="username">Username:</label>
-      <input type="text" formControlName="username" name="username" required>
+      <input type="text" formControlName="username" name="username"  maxlength="10" required>
       @if (submit){
       @if(!registerForm.controls["username"].valid && registerForm.controls["username"].dirty ||
       registerForm.controls["username"].touched){
@@ -43,6 +44,7 @@
       }
       }
       </div>
+      <div class="password">
       <div class="item">
         <label for="password">Password:</label>
       <input type="password" formControlName="password" name="password" required>
@@ -79,7 +81,8 @@
       }
       }
       </div>
-      
+    </div>
+
       <div class="item">
         <label for="email">Email:</label>
       <input type="text" formControlName="email" name="email" required>
@@ -96,7 +99,7 @@
       }
       }
       </div>
-      <div class="name">
+    
         <div class="item">
           <label for="orgId">Organization </label>
       <input type="text" formControlName="orgId" name="orgId" required>
@@ -113,8 +116,8 @@
       </div>
       }
       }
-        </div>   
-
+      
+ <div class="role-boss-section">
         <div class="item">
           <label for="roleId">Role:</label>
 
@@ -135,14 +138,14 @@
       </div>
       }
       }
-        </div>
+
       </div>     
 
         <div class="item">
           <label for="boss">Reporting Officer:</label>
 
-      <select id="boss" name="boss" formControlName="boss" name="boss" required>
-        @for (item of users; track $index) {
+      <select id="boss" name="boss" formControlName="boss" name="boss" required (click)="getReportingOfficers()">
+        @for (item of reportingofficers; track $index) {
           <option value={{item.id}}>{{item.firstname}} {{item.lastname}}</option>  
         }
 
@@ -159,6 +162,8 @@
       }
       }
         </div>
+      </div>      
+      </div>      
        
       
       <div class="register-status">
@@ -169,8 +174,9 @@
         }
       </div>
 
+     <div class="reg-button">
       <button type="submit" (click)="userRegister()">Register</button>
-
+    </div>
     </form>
   </div>
 </div>
