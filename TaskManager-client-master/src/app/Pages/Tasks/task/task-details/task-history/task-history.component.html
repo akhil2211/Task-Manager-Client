@@ -1,34 +1,22 @@
-<!-- 
-<div class="timeline">
-  @for(history of historyList; track history.id) {
-    <div class="dot">
-      <span>{{ history.username}}</span>
-      <span>{{ history.unassigned_date}}</span>
-      <span>{{ history.unassigned_time}}</span>
-      <span>{{history.assigned_date}}</span>
-      <span>{{history.assigned_time}}</span>
-    </div>
-  }
-</div>
-
-<div class="popup" id="popup">
-  <span class="close-btn" onclick="closePopup()">X</span>
-  <p id="popup-username"></p>
-  <p id="popup-unassigned"></p>
-  <p id="popup-assigned"></p>
-</div> -->
-
-<div class="timeline">
-  <div class="dot" >
-   @for( history of historyList; track history.id) {
-    <span>{{ history.username }}</span>}
+    
+  <div class="task-history">
+       
+    
+      @for(history of historyList; track history.id){
+          <div class="event">
+              <div class="event-header"> 
+               @if($index==0){
+                Current  
+                } 
+              @else{
+              Past }              
+              Task Holder : {{ history.firstname }} {{history.lastname}} </div>
+              <div class="event-time">
+                  <div class="assign-title">Assigned At: </div> 
+                  <div class="assigned-content">
+                    {{ history.assigned_date }} | {{ history.assigned_time }}
+                  </div>
+              </div>
+          </div>
+        }
   </div>
-</div>
-
-<div class="popup" id="popup">
-  @if(selectedHistory){
-  <span class="close-btn" >X</span>
-  <p id="popup-username">{{ selectedHistory.username }}</p>
-  <p id="popup-unassigned">Unassigned: {{ selectedHistory.unassigned_date }} {{ selectedHistory.unassigned_time }}</p>
-  <p id="popup-assigned">Assigned: {{ selectedHistory.assigned_date }} {{ selectedHistory.assigned_time }}</p>}
-</div>

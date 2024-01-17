@@ -55,17 +55,20 @@ export class CreateTaskComponent {
       t_code:["",Validators.required],
       t_description:["",Validators.required],
       duedate:["",Validators.required],
-      t_status:["",Validators.required],
+      t_status:["Active",Validators.required],
       assigned_to:[null,Validators.required],
       project_id:[null,Validators.required],
       category_id:[null,Validators.required],
       priority_id:[null,Validators.required]    
+
    })
    this.minDate = new Date().toISOString().split('T')[0];
  }
  createTask(){  
   
    this.submit=true;
+   console.log(this.taskForm);
+   
    if(this.taskForm.invalid){
      this.taskForm.markAllAsTouched();
      console.log(this.submit);
@@ -89,7 +92,7 @@ export class CreateTaskComponent {
  this.projectService.postReturn(`${environment.apiUrl}/api/v1/project/task/create`,taskData,{headers}).subscribe((resp:any)=>{
    console.log("Task Created Successfully",resp);
      this.taskCreateSuccess=true;
-     window.alert("Task Created Successfully!")
+     window.prompt("Task Created Successfully!")
      this.taskCreateSuccess.reset();
      console.log(resp.response);    
   },(error)=>{

@@ -82,7 +82,7 @@ export class TaskDetailsComponent implements OnInit {
     this.newAssignedToId = this.selectTaskHolder.nativeElement.value;
     console.log(this.newAssignedToId,this.assignedTo);
     
-    if(this.newAssignedTo==this.task.assignedTo){
+    if(this.newAssignedToId==this.task.assignedTo){
       window.alert("Please Assign a new Task Holder!");
       return
     }
@@ -97,7 +97,7 @@ export class TaskDetailsComponent implements OnInit {
       this.isAssignedToOptionOpened=false
       this.newAssignedTo = this.selectTaskHolder.nativeElement.selectedOptions[0].text    
       this.assignedTo = this.newAssignedTo
-       
+       this.showTaskHistory(this.task);
       window.alert("Task Holder Changed.")
     },(error)=>{
    
@@ -134,7 +134,8 @@ export class TaskDetailsComponent implements OnInit {
           unassigned_time:null,
           unassigned_date:null,
 
-          username:this.task.username,
+          firstname:this.task.firstname,
+          lastname:this.task.lastname,
         })
         console.log(this.taskHistoryData);
         

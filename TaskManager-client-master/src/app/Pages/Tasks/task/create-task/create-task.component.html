@@ -70,7 +70,7 @@
                 <label for="duedate">Due Date:</label>
               </div>
               <div class="input-container">
-                <input type="date" [min]="minDate" formControlName="duedate" name="taskDate" required>
+                <input type="date" [min]="minDate" formControlName="duedate" name="taskDate" onkeydown="return false"  required>
                 
                 @if (submit) {
                 @if(!taskForm.controls["duedate"].valid && taskForm.controls["duedate"].dirty ||

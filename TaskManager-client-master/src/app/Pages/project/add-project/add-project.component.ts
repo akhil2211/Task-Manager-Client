@@ -32,8 +32,8 @@ export class AddProjectComponent implements OnInit {
       project_code:["",Validators.required],
       project_name:["",Validators.required],
       project_description:["",Validators.required],
-      due_date:["",Validators.required],
-      project_status:["",Validators.required],
+      due_date: ["", [Validators.required]], 
+      project_status:["Initiated",Validators.required],
       client:["",Validators.required]    
    })
    this.minDate = new Date().toISOString().split('T')[0];
@@ -76,4 +76,5 @@ export class AddProjectComponent implements OnInit {
   
   this.submit=false;
 }
+
 }
