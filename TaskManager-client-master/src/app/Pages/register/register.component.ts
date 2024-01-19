@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
       email: ["",[Validators.required,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}")]],
       orgId:["",[Validators.required,Validators.pattern("[0-9]*")]],
       roleId:["",Validators.required]  ,
-      boss:["",Validators.required]
+      boss:[""]
     })
   }
   userRegister(){
@@ -90,19 +90,22 @@ export class RegisterComponent implements OnInit {
     }
   );
 }
- getReportingOfficers() {
-    
-  this.appService.getReturn(`${environment.apiUrl}/api/v1/admin/getReportingOfficerList`).subscribe(
+
+
+ getReportingOfficers(event:any) {
+  const roleId = event.target.value  
+ 
+  this.appService.getReturn(`${environment.apiUrl}/api/v1/admin/getReportingOfficerList/${roleId}`).subscribe(
     (data: any) => {
       this.reportingofficers = data;
       console.log(this.reportingofficers);
       
     },
     (error) => {
-      console.error('Error fetching tasks:', error);
+      console.error('Error fetching Reporting Officers', error);
     }
   );
+ }
+
 }
 
-
-}

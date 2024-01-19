@@ -121,7 +121,7 @@
         <div class="item">
           <label for="roleId">Role:</label>
 
-      <select id="roleId" name="roles" formControlName="roleId" name="role" required>
+      <select id="roleId" name="roles" formControlName="roleId" name="role" required (change)="getReportingOfficers($event)">
         <option value="2">General Manager</option>
         <option value="3">Project Manager</option>
         <option value="4">User</option>
@@ -129,39 +129,29 @@
       </select>
 
       @if (submit){
-      @if(!registerForm.controls["role"].valid && registerForm.controls["role"].dirty ||
-      registerForm.controls["role"].touched){
+      @if(!registerForm.controls["roleId"].valid && registerForm.controls["roleId"].dirty ||
+      registerForm.controls["roleId"].touched){
       <div class="validation-error">
-        @if(registerForm.controls["role"].errors?.["required"]){
+        @if(registerForm.controls["roleId"].errors?.["required"]){
         *Required Field
         }
       </div>
       }
-      }
+    }
 
       </div>     
 
         <div class="item">
           <label for="boss">Reporting Officer:</label>
 
-      <select id="boss" name="boss" formControlName="boss" name="boss" required (click)="getReportingOfficers()">
+      <select id="boss" name="boss" formControlName="boss" name="boss" required>
         @for (item of reportingofficers; track $index) {
           <option value={{item.id}}>{{item.firstname}} {{item.lastname}}</option>  
         }
 
-      </select>
-       
-      @if (submit){
-      @if(!registerForm.controls["boss"].valid && registerForm.controls["boss"].dirty ||
-       registerForm.controls["boss"].touched){
-      <div class="validation-error">
-        @if(registerForm.controls["boss"].errors?.["required"]){
-        *Required Field
-        }
-      </div>
-      }
-      }
-        </div>
+      </select>  
+
+     </div>
       </div>      
       </div>      
        

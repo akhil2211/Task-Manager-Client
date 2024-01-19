@@ -90,10 +90,9 @@ export class CreateTaskComponent {
   }
   const headers = new HttpHeaders().set("ResponseType","text")
  this.projectService.postReturn(`${environment.apiUrl}/api/v1/project/task/create`,taskData,{headers}).subscribe((resp:any)=>{
-   console.log("Task Created Successfully",resp);
      this.taskCreateSuccess=true;
-     window.prompt("Task Created Successfully!")
-     this.taskCreateSuccess.reset();
+     window.alert("Task Created Successfully!")
+     this.taskForm.reset();
      console.log(resp.response);    
   },(error)=>{
     this.errorMsg="Task Code  or Task Title already exists!"    

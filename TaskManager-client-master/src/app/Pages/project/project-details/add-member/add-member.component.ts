@@ -16,13 +16,15 @@ export class AddMemberComponent implements OnInit{
   userList:any[]=[]
   selectedList:any[]=[]
   userIds:any[]=[]
+
  
   constructor(private api:AppService){}
  
   ngOnInit(): void {
+
     console.log(this.projectData.currentUsers);
    
-    this.api.getReturn(`${environment.apiUrl}/api/v1/user/list`).subscribe((data:any)=>{
+    this.api.getReturn(`${environment.apiUrl}/api/v1/user/team`).subscribe((data:any)=>{
       this.userList = data.filter((obj1:any) => !this.projectData.currentUsers.some((obj2:any) => obj1.id === obj2.id));
       console.log(this.userList);
     },(error)=>console.log(error))
@@ -40,7 +42,7 @@ export class AddMemberComponent implements OnInit{
     })
     }
     else{
-      this.api.getReturn(`${environment.apiUrl}/api/v1/user/list`).subscribe(
+      this.api.getReturn(`${environment.apiUrl}/api/v1/user/team`).subscribe(
         (data: any) => {
           this.userList = data.filter((obj1:any) => !this.projectData.currentUsers.some((obj2:any) => obj1.id === obj2.id));
         },
@@ -80,10 +82,20 @@ export class AddMemberComponent implements OnInit{
         userIds:this.userIds
       }
       console.log(reqBody);
+
      
       const headers = new HttpHeaders().set("ResponseType","text")
       this.api.postReturn(`${environment.apiUrl}/api/v1/gm/${this.projectData.projectId}/assign`,reqBody,{headers}).subscribe((data:any)=>{
         window.alert("User Assigned Successfully!")
+        this.selectedList.map((obj)=>{
+
+          this.projectData.currentUsers.push(obj)
+
+        })
+        console.log(this.projectData.currentUsers);
+        
+        this.selectedList=[];
+        this.ngOnInit()
       },(error)=>console.log(error))
      
     }

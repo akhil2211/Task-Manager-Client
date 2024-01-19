@@ -1,9 +1,15 @@
 
+
+history-heading{
+  display: flex;
+  width: 100%;
+  color:rgb(30, 87, 124);
+}
 .task-history {
   background-color: #fff;
   border: 1px solid #ddd;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
+  width: 600px;
   margin: 20px;
   padding: 20px;
   border-radius: 8px;

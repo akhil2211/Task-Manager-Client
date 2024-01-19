@@ -51,24 +51,10 @@
               </div>
             }
            
-        }               
-         
-        <label for="due_date">Due Date:</label>
-        <input type="date" [min]="minDate" formControlName="due_date" name="projectDate" onkeydown="return false" required>
-
-          @if (submit) {
-            @if(!projectForm.controls["due_date"].valid && projectForm.controls["due_date"].dirty || projectForm.controls["due_date"].touched){
-              <div class="validation-error">
-                @if(projectForm.controls["due_date"].errors?.["required"]){
-                  *Required Field    }                          
-              </div>
-            }
-           
-        }               
-         
-      
+        }             
+                     
         <label for="project_status">Status:</label>   
-         <input disabled="disabled" value="Active">
+         <input disabled="disabled" value="Initiated">
       
        <label for="client">Client :</label>
       <input type="client" formControlName="client" name="client" required>

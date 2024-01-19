@@ -13,7 +13,6 @@
     padding: 15px;
     background-color: #ecf0f1;
     border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     border-bottom:5px solid #66a8d4
 }
 
@@ -85,4 +84,10 @@ justify-content: center;}
         border:none;
         border-radius:5px;
     }
+}
+app-task-history{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
