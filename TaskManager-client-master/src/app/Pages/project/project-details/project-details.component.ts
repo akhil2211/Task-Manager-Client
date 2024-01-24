@@ -41,18 +41,24 @@ export class ProjectDetailsComponent implements OnInit{
       });
   }
   onRemoveClick(userId:number){
-    const headers=new HttpHeaders().set("ResponseType","text");
-
-    this.api.deleteReturn(`${environment.apiUrl}/api/v1/gm/removeMember/${userId}/${this.project.id}`,{headers}).subscribe((data:any)=>{
-      console.log(data);
-      this.ngOnInit()
-      
-  },(error)=>{
-    console.log(error);    
+    this.modalService.setRootViewContainerRef(this.viewContainerRef);
+    this.modalService.addDynamicComponent("remove", "Are you sure you want to remove this member?").then((value)=>{
+      if(value){
+        const headers=new HttpHeaders().set("ResponseType","text");
     
-  }
-  )
-}
+        this.api.deleteReturn(`${environment.apiUrl}/api/v1/gm/removeMember/${userId}/${this.project.id}`,{headers}).subscribe((data:any)=>{
+          console.log(data);
+          this.ngOnInit()
+          
+      },(error)=>{
+        console.log(error);    
+        
+      }
+      )
+   }
+ });
+    }
+   
 
 showProjectTasks(taskDetails:any){
 

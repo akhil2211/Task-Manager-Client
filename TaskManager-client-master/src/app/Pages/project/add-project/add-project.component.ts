@@ -39,9 +39,10 @@ export class AddProjectComponent implements OnInit {
    this.minDate = new Date().toISOString().split('T')[0];
  }
  createProject(){
-   console.log(this.projectForm);
+   
    
    this.submit=true;
+   console.log(this.projectForm);
    if(this.projectForm.invalid){
      this.projectForm.markAllAsTouched();
      console.log(this.submit);
@@ -71,7 +72,7 @@ export class AddProjectComponent implements OnInit {
      this.projectForm.reset();
      console.log(resp.response);   
  },(error)=>{
-  this.errorMsg="Project Name  or Project Code already exists!"     
+  this.errorMsg="Project Name or Project Code already exists!"     
   })
   
   this.submit=false;

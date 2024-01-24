@@ -11,6 +11,9 @@
       @else if(modalTitle=="addMember"){
         <app-add-member [projectData]="modalText"></app-add-member>
       }
+      @else if(modalTitle=="remove"){
+        <app-delete-confirmation [content]="modalText"(confirmed)="onConfirm($event)"></app-delete-confirmation>
+      }
 		<a class="modal--close-btn" (click)="close($event)">X</a>
 	</div>
 </div>

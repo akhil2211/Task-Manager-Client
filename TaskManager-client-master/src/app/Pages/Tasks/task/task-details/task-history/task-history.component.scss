@@ -1,6 +1,6 @@
 
 
-history-heading{
+.history-heading{
   display: flex;
   width: 100%;
   color:rgb(30, 87, 124);
@@ -50,6 +50,8 @@ history-heading{
 }
 
 .event-time {
+  display: flex;
+  gap:5px;
   color: #777;
   font-size: 0.9em;
 }

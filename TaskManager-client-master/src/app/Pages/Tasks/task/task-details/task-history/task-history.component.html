@@ -12,12 +12,22 @@
               @else{
               Past }              
               Task Holder : {{ history.firstname }} {{history.lastname}} </div>
+              @if(history.unassigned_date){
               <div class="event-time">
-                  <div class="assign-title">Assigned At: </div> 
+                  <div class="assign-title">UnAssigned At: </div> 
+                  <div class="assigned-content">
+                    {{ history.unassigned_date }} | {{ history.unassigned_time }}
+                  </div>
+                 
+              </div>}
+               @if ($last) {
+                <div class="event-time">
+                    <div class="assign-title">Assigned At: </div> 
                   <div class="assigned-content">
                     {{ history.assigned_date }} | {{ history.assigned_time }}
                   </div>
-              </div>
+                  </div>
+                  }
           </div>
         }
   </div>

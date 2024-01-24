@@ -16,6 +16,7 @@ import { TaskHistoryComponent } from './task-history/task-history.component';
 export class TaskDetailsComponent implements OnInit {
 
   @Input() taskInfo:any;
+  @Input() disableWorkflow:any;
   task:any
   @Output() viewEvent=new EventEmitter<any>()
   @Output() editSuccessEvent = new EventEmitter<any>()
@@ -33,7 +34,8 @@ export class TaskDetailsComponent implements OnInit {
   isAssignedToOptionOpened:boolean=false
   projectUsers:any[] =[]
   taskHistoryData: any;
-  isTaskHistoryOpen:any;
+  isTaskHistoryOpen:boolean=false;
+  showWorkflow:boolean=false;
 
 
   constructor (private api:AppService){}
@@ -97,7 +99,7 @@ export class TaskDetailsComponent implements OnInit {
       this.isAssignedToOptionOpened=false
       this.newAssignedTo = this.selectTaskHolder.nativeElement.selectedOptions[0].text    
       this.assignedTo = this.newAssignedTo
-       this.showTaskHistory(this.task);
+     
       window.alert("Task Holder Changed.")
     },(error)=>{
    

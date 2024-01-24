@@ -9,75 +9,96 @@ import { HttpHeaders, HttpParams } from '@angular/common/http';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './list-project.component.html',
-  styleUrl: './list-project.component.scss'
+  styleUrls: ['./list-project.component.scss'] // Use 'styleUrls' instead of 'styleUrl'
 })
-export class ListProjectComponent implements OnInit,OnChanges {
+export class ListProjectComponent implements OnInit, OnChanges {
 
   projects: any[] = [];
-  @Input() projectName:string|null=null;
-  @Output() viewEvent=new EventEmitter<any>()
+  @Input() projectName: string | null = null;
+  @Output() viewEvent = new EventEmitter<any>();
   newStatus: any;
- 
-  constructor(private projectService: AppService,private api:AppService) { }
+  user: any;
+  userRole: any;
+
+  constructor(private projectService: AppService, private api: AppService) { }
+
   ngOnChanges(changes: SimpleChanges): void {
-    if(this.projectName){
-      if(this.projectName !==""){
+    this.user = localStorage.getItem("user");
+    console.log(this.user);
+    this.userRole = JSON.parse(this.user).roles;
+
+    if (this.projectName) {
+      if (this.projectName !== "") {
         let queryParams = new HttpParams();
-        queryParams = queryParams.append("project",this.projectName);
-        this.api.getReturn(`${environment.apiUrl}/api/v1/project/searchProject`,{params:queryParams}).subscribe((data:any)=>{
-        this.projects=data
-        console.log(this.projects);
+        queryParams = queryParams.append("project", this.projectName);
+        this.api.getReturn(`${environment.apiUrl}/api/v1/project/searchProject`, { params: queryParams }).subscribe((data: any) => {
+          this.projects = data;
+          console.log(this.projects);
+        }, (error) => {
+          console.log(error);
+        });
       }
-      ,(error)=>{
-        console.log(error);      
-      })
-      }     
+    } else {
+      if (this.userRole == "ADMIN") {
+        this.loadAllProjects();
+      } else {
+        this.loadProjects();
+      }
     }
-    else{
+  }
+
+  ngOnInit(): void {
+    if (this.userRole == "ADMIN") {
+      this.loadAllProjects();
+    } else {
       this.loadProjects();
     }
   }
- 
-  ngOnInit(): void {
-    
-    this.loadProjects();
-    
-  }
-  loadProjects() {
+
+
+    loadAllProjects() {
+      this.projectService.getReturn(`${environment.apiUrl}/api/v1/project/projectList`).subscribe(
+        (data: any) => {
+          this.projects = data;
+          console.log(this.projects);
+        },
+        (error) => {
+          console.error('Error fetching All projects:', error);
+        }
+      );
+    }
   
-    this.projectService.getReturn(`${environment.apiUrl}/api/v1/gm/projectList`).subscribe(
-      (data: any) => {
-        this.projects = data;
-        console.log(this.projects);
-        
-      },
-      (error) => {
-        console.error('Error fetching projects:', error);
-      }
-    );
+
+    loadProjects() {
+      this.projectService.getReturn(`${environment.apiUrl}/api/v1/user/projects`).subscribe(
+        (data: any) => {
+          this.projects = data;
+          console.log(this.projects);
+        },
+        (error) => {
+          console.error('Error fetching projects:', error);
+        }
+      );
+    }
   
-  }
-  
-  showDetails(project:any){
-  this.viewEvent.emit(project);
+
+  showDetails(project: any) {
+    this.viewEvent.emit(project);
   }
 
-  onFilterStatus(event:any) {
-       this.newStatus = event.target.value;
-       console.log(this.newStatus);
-       
-     if(event.target.value=="Default"){
-        this.loadProjects();
-       }
-     else{
-      this.api.getReturn(`${environment.apiUrl}/api/v1/gm/${this.newStatus}/ProjectStatus`).subscribe((data:any)=>{
-      console.log(data);
-      this.projects = data;
-            
-    },(error)=>{
-      console.log(error);
-      
-    })
+  onFilterStatus(event: any) {
+    this.newStatus = event.target.value;
+    console.log(this.newStatus);
+
+    if (event.target.value == "Default") {
+      this.loadProjects();
+    } else {
+      this.api.getReturn(`${environment.apiUrl}/api/v1/gm/${this.newStatus}/ProjectStatus`).subscribe((data: any) => {
+        console.log(data);
+        this.projects = data;
+      }, (error) => {
+        console.log(error);
+      });
     }
   }
 }

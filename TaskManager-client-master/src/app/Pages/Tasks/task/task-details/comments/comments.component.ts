@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewContainerRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../../../../environments/environment.development';
 import { AppService } from '../../../../../Services/app-service.service';
 import { HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DataService } from '../../../../../Services/data.service';
+import { ModalService } from '../../../../../Services/modal.service';
 
 @Component({
   selector: 'app-comments',
@@ -24,7 +25,7 @@ export class CommentsComponent implements OnInit {
   userId: any;
   
  
-  constructor(private commentService: AppService,private formBuilder : FormBuilder,private dataService:DataService) { }
+  constructor(private commentService: AppService,private formBuilder : FormBuilder,private dataService:DataService,private modalService:ModalService,private viewContainerRef:ViewContainerRef ) { }
  
   ngOnInit(): void {
      this.loadComments();
@@ -84,8 +85,12 @@ export class CommentsComponent implements OnInit {
   }
     
   removeComment(commentId:number){
-    const headers=new HttpHeaders().set("ResponseType","text");
 
+    this.modalService.setRootViewContainerRef(this.viewContainerRef);
+    this.modalService.addDynamicComponent("remove", "Are you sure you want to delete this comment?").then((value)=>{
+      if(value){
+        const headers=new HttpHeaders().set("ResponseType","text");
+    
     this.commentService.deleteReturn(`${environment.apiUrl}/api/v1/comments/delete/${commentId}`,{headers}).subscribe((data:any)=>{
       console.log(data);
       this.ngOnInit();
@@ -93,11 +98,16 @@ export class CommentsComponent implements OnInit {
   },(error)=>{
     console.log(error);    
     
-  }
-  )
+  })
+
+      }
+    });  
 
 }
   
 }
+
+
+
 
 

@@ -3,7 +3,7 @@
     <h1>Taskbotic</h1>
     
     @if(username!=null){
-        <a style="float: right; " [routerLink]="'/login'"href="" (click)="logout()">Logout</a>
+        <a style="float: right; " (click)="logout()">Logout</a>
         <a style="float: left;" [routerLink]="'/dashboard'" href="">Dashboard</a>
         <span class="short-name"  style="float: right;" [routerLink]="'/profile'"> {{shortname}}</span>
     }

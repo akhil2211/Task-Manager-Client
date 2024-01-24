@@ -69,9 +69,10 @@
         <strong>Priority:</strong>
         <span>{{task.type}}</span>
     </div>
+    @if (showRequiredDetails) {
     <div class="task-history-area">
         <div class="task-history-button" (click)="showTaskHistory(task)"><button> Task Workflow </button></div>
-    </div>
+    </div>}
     
 </div>
 <div class="comment">

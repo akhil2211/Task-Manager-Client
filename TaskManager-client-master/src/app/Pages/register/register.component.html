@@ -40,6 +40,9 @@
         @else if (registerForm.controls["username"].errors?.["maxlength"]) {
         Max Length is 10
         }
+        @else if (registerForm.controls["username"].errors?.["pattern"]) {
+          *Invalid Username !
+        }
       </div>
       }
       }

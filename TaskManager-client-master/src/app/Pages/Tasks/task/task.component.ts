@@ -24,9 +24,8 @@ export class TaskComponent implements OnInit {
 
   showTaskDetails:boolean=false;
   taskDetails:any;
-  searchTaskName:string="";
   showMyTasks:boolean=false;
-  showAssignedTasks:boolean=false;
+  showAssignedTasks:boolean=true;
 
  showCreateTask() { 
   this.modalService.setRootViewContainerRef(this.viewContainerRef);
@@ -42,12 +41,7 @@ export class TaskComponent implements OnInit {
      else{
       this.showMyTasks=true;
      }
-     if(this.userRole=="USER"){
-      this.showAssignedTasks=false;
-     }
-     else{
-      this.showAssignedTasks=true;
-     }
+   
 
     this.showTaskDetails=false;
   }
@@ -55,12 +49,9 @@ export class TaskComponent implements OnInit {
     if(event){
       this.showTaskDetails=true;
       this.taskDetails=event;
+
     }
   }
   
-  searchTask(event: any) {    
-    this.searchTaskName = event.target.value
-    
-  }
-
+ 
 }

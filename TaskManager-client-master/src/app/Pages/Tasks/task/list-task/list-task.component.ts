@@ -12,6 +12,7 @@ import { HttpHeaders, HttpParams } from '@angular/common/http';
   styleUrl: './list-task.component.scss'
 })
 export class ListTaskComponent implements OnInit,OnChanges {
+
   
   tasks: any[] = [];
   @Output() viewEvent=new EventEmitter<any>()
@@ -24,6 +25,8 @@ export class ListTaskComponent implements OnInit,OnChanges {
   assignToList:any[]=[]
   assignedTo: any;
   selectedStatus: any;
+  searchTaskName:string="";
+  tempTasks:any[]=[];
 
   showTaskDetails(task:any){
     this.viewEvent.emit({
@@ -56,6 +59,7 @@ export class ListTaskComponent implements OnInit,OnChanges {
  
   ngOnInit(): void {
     this.loadTasks();   
+   
   }
  
   loadTasks() {
@@ -63,6 +67,7 @@ export class ListTaskComponent implements OnInit,OnChanges {
     this.taskService.getReturn(`${environment.apiUrl}/api/v1/project/task/AssignedTasks`).subscribe(
       (data: any) => {
         this.tasks = data;
+        this.tempTasks=this.tasks;
         console.log(this.tasks);
         this.tasks.map((task)=>{
           if (this.assignToList.indexOf(task.firstname+" "+task.lastname)==-1) this.assignToList.push(task.firstname+" "+task.lastname);
@@ -112,7 +117,19 @@ export class ListTaskComponent implements OnInit,OnChanges {
       console.log(error);
       
     })
-  }
+ }
 
 }
+searchTask(event: any) {    
+  this.tasks= this.tempTasks  
+  this.searchTaskName = event.target.value
+  this.tasks=this.tasks.filter((task:any)=>{ 
+    const taskTitle=task.t_title.toLocaleLowerCase()
+    return taskTitle.includes(this.searchTaskName.toLocaleLowerCase())
+  })
+  console.log(this.tasks);
+  
+}
+
+
 }

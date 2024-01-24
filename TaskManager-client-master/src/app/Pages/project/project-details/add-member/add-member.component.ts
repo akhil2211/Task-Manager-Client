@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewContainerRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppService } from '../../../../Services/app-service.service';
 import { environment } from '../../../../../environments/environment.development';
 import { HttpHeaders, HttpParams } from '@angular/common/http';
+import { ModalService } from '../../../../Services/modal.service';
  
 @Component({
   selector: 'app-add-member',
@@ -18,7 +19,7 @@ export class AddMemberComponent implements OnInit{
   userIds:any[]=[]
 
  
-  constructor(private api:AppService){}
+  constructor(private api:AppService,private modalService:ModalService, private viewContainerRef:ViewContainerRef ){}
  
   ngOnInit(): void {
 
@@ -66,11 +67,16 @@ export class AddMemberComponent implements OnInit{
       return true;
     }
   }
-  removeUser(item:any){
+  removeUser(item:any){    
+    
     this.selectedList = this.selectedList.filter(obj => {
       return obj !== item
-    });  
-  }
+    });
+    }
+  
+
+  
+
   assignProject(){
     if(this.selectedList.length!=0){
       this.selectedList.map((value)=>{

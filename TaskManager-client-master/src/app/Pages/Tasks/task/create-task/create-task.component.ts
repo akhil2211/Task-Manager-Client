@@ -28,6 +28,7 @@ export class CreateTaskComponent {
   minDate: any;
   user: any;
   userRole: any;
+  
 
 
   constructor(private formBuilder : FormBuilder, private projectService : AppService, private router: Router){}
@@ -89,7 +90,7 @@ export class CreateTaskComponent {
     priority_id: formValues.priority_id,
   }
   const headers = new HttpHeaders().set("ResponseType","text")
- this.projectService.postReturn(`${environment.apiUrl}/api/v1/project/task/create`,taskData,{headers}).subscribe((resp:any)=>{
+  this.projectService.postReturn(`${environment.apiUrl}/api/v1/project/task/create`,taskData,{headers}).subscribe((resp:any)=>{
      this.taskCreateSuccess=true;
      window.alert("Task Created Successfully!")
      this.taskForm.reset();
@@ -118,7 +119,25 @@ onProjectChange(event:any){
   const projectId = event.target.value
   if(projectId){
     this.projectService.getReturn(`${environment.apiUrl}/api/v1/project/${projectId}/userlist`).subscribe((data:any)=>{
-      this.projectUsers = data
+      this.projectUsers = data.filter((obj:any)=>{
+        console.log(obj.roles);
+        
+        if(this.userRole=="USER"){
+          console.log("IN USER");
+          
+          return obj.roles=="USER"
+        }
+           else if(this.userRole=="PM"){
+            console.log("IN PM");
+            return obj.roles=="PM" || obj.roles=="USER"
+                
+           }
+           else{
+            console.log("IN GM");
+            return obj.roles=="PM" || obj.roles=="USER" || obj.roles=="GM"
+           }
+      })
+    
     },(error)=>{
       console.log(error);      
     })
