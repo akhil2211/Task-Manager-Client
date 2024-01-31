@@ -34,11 +34,15 @@
   @case("PM"){
      <div class="item" (click)="viewComponent('team')">Team</div>
 
+     <div class="item" (click)="viewComponent('project')">Projects</div>      
+
      <div class="item" (click)="viewComponent('task')">Tasks</div>
       
   }
   @case("USER") {
-    <div class="item" (click)="viewComponent('task')">My Tasks</div>
+    <div class="item" (click)="viewComponent('project')">Projects</div>  
+    
+    <div class="item" (click)="viewComponent('task')">Tasks</div>
   }
 
 }

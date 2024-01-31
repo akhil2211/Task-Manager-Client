@@ -5,7 +5,8 @@
     <div>
          <input type="text" placeholder="Search Projects" id="searchBar" (input)="searchProject($event)">
          <i class="fa-solid fa-magnifying-glass search-icon" ></i>
-      <button (click)="showCreateProject()">Create <span>+</span></button>
+         @if (userRole=="GM") {
+      <button (click)="showCreateProject()">Create <span>+</span></button>}
     </div>
     <h1>Project List</h1>
       

@@ -44,7 +44,16 @@
                         <td>{{item.firstname}} {{item.lastname}}</td>
                         
                         <td>{{item.roles}}</td>
-                       <button (click)="onRemoveClick(item.id)">Remove</button>
+                        <td>
+                        @if(item.roles!="GM")   {
+                         @if(userRole=="PM" && item.roles=="USER" ){                            
+                           <button (click)="onRemoveClick(item.id)">Remove</button>
+                          }
+                         @else if(userRole=="GM"){
+                            <button (click)="onRemoveClick(item.id)">Remove</button>                          
+                            } 
+                        }              
+                     </td>
                       </tr>
                     }
                   </table>

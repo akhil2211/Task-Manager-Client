@@ -20,10 +20,15 @@ export class ProjectDetailsComponent implements OnInit{
   taskDetails: any;
   isTaskList:boolean=false;
   taskList:any[]=[];
+  user: any;
+  userRole: any;
 
   constructor(private modalService:ModalService,private viewContainerRef:ViewContainerRef,private api:AppService){}
 
   ngOnInit(): void {
+    this.user = localStorage.getItem("user");
+    this.userRole = JSON.parse(this.user).roles;    
+
     console.log(this.project);
     this.api.getReturn(`${environment.apiUrl}/api/v1/project/${this.project.id}/userlist`).subscribe((data:any)=>{
       this.userList = data
@@ -47,8 +52,8 @@ export class ProjectDetailsComponent implements OnInit{
         const headers=new HttpHeaders().set("ResponseType","text");
     
         this.api.deleteReturn(`${environment.apiUrl}/api/v1/gm/removeMember/${userId}/${this.project.id}`,{headers}).subscribe((data:any)=>{
-          console.log(data);
-          this.ngOnInit()
+        console.log(data);
+        this.ngOnInit()
           
       },(error)=>{
         console.log(error);    

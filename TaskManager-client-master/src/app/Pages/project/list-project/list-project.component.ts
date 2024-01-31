@@ -19,6 +19,8 @@ export class ListProjectComponent implements OnInit, OnChanges {
   newStatus: any;
   user: any;
   userRole: any;
+  tempProjects:any[]=[];
+  
 
   constructor(private projectService: AppService, private api: AppService) { }
 
@@ -29,14 +31,9 @@ export class ListProjectComponent implements OnInit, OnChanges {
 
     if (this.projectName) {
       if (this.projectName !== "") {
-        let queryParams = new HttpParams();
-        queryParams = queryParams.append("project", this.projectName);
-        this.api.getReturn(`${environment.apiUrl}/api/v1/project/searchProject`, { params: queryParams }).subscribe((data: any) => {
-          this.projects = data;
-          console.log(this.projects);
-        }, (error) => {
-          console.log(error);
-        });
+            this.projects=this.projects.filter((obj:any)=>{
+          return obj.project_name.toLocaleLowerCase().includes(this.projectName)
+        })
       }
     } else {
       if (this.userRole == "ADMIN") {
@@ -61,6 +58,7 @@ export class ListProjectComponent implements OnInit, OnChanges {
         (data: any) => {
           this.projects = data;
           console.log(this.projects);
+          this.tempProjects=this.projects;
         },
         (error) => {
           console.error('Error fetching All projects:', error);
@@ -74,6 +72,7 @@ export class ListProjectComponent implements OnInit, OnChanges {
         (data: any) => {
           this.projects = data;
           console.log(this.projects);
+          this.tempProjects=this.projects;
         },
         (error) => {
           console.error('Error fetching projects:', error);
@@ -91,14 +90,25 @@ export class ListProjectComponent implements OnInit, OnChanges {
     console.log(this.newStatus);
 
     if (event.target.value == "Default") {
-      this.loadProjects();
-    } else {
-      this.api.getReturn(`${environment.apiUrl}/api/v1/gm/${this.newStatus}/ProjectStatus`).subscribe((data: any) => {
-        console.log(data);
-        this.projects = data;
-      }, (error) => {
-        console.log(error);
-      });
+      if (this.userRole == "ADMIN") {
+        this.loadAllProjects();
+      } else {
+        this.loadProjects();
+      }      
+     } 
+
+    else {
+         this.projects=this.tempProjects;
+          this.projects=this.projects.filter((obj)=>{
+          return  obj.project_status==this.newStatus;
+          })
     }
   }
+ 
 }
+
+// this.tasks= this.tempTasks  
+//   this.searchTaskName = event.target.value
+//   this.tasks=this.tasks.filter((task:any)=>{ 
+//     const taskTitle=task.t_title.toLocaleLowerCase()
+//     return taskTitle.includes(this.searchTaskName.toLocaleLowerCase())

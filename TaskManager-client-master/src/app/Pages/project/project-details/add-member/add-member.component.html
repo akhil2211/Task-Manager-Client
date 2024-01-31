@@ -21,7 +21,9 @@
                 @if(isUserSelected(item)){
                   <tr>
                     <td>{{item.firstname}} {{item.lastname}}</td>
-                    <td>{{item.roles}}</td>
+                    <td>
+                      {{item.role.roles}}
+                    </td>
                     <td><button class="add-button" (click)="addUser(item)">Add</button></td>
                   </tr>
                 }
@@ -38,7 +40,7 @@
                 @for (item of selectedList; track $index) {
                   <tr>
                     <td>{{item.firstname}} {{item.lastname}}</td>
-                    <td>{{item.roles}}</td>
+                    <td>{{item.role.roles}}</td>
                     <td><button class="remove-button" (click)="removeUser(item)">Remove</button></td>
                   </tr>
                 }

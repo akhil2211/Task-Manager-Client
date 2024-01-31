@@ -25,7 +25,7 @@
       </thead>
       <tbody>
   @for(project of projects; track project.id) {
-          <tr class="project-item" (click)="showDetails(project)">
+          <tr class="project-item" (click)=" userRole!='ADMIN' && showDetails(project)">
             <td>{{ project.project_name }}</td>
             <td class="status-item">
               @if (project.project_status == "Completed") {

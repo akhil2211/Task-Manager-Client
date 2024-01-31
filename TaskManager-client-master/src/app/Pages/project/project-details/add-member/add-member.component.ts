@@ -17,15 +17,20 @@ export class AddMemberComponent implements OnInit{
   userList:any[]=[]
   selectedList:any[]=[]
   userIds:any[]=[]
+  user: any;
+  userRoleId: any;
 
  
   constructor(private api:AppService,private modalService:ModalService, private viewContainerRef:ViewContainerRef ){}
  
   ngOnInit(): void {
-
+    this.user = localStorage.getItem("user");
+    console.log(this.user);
+    this.userRoleId = JSON.parse(this.user).role_id;
+   
     console.log(this.projectData.currentUsers);
    
-    this.api.getReturn(`${environment.apiUrl}/api/v1/user/team`).subscribe((data:any)=>{
+    this.api.getReturn(`${environment.apiUrl}/api/v1/user/getLowerLevelUser/${this.userRoleId}`).subscribe((data:any)=>{
       this.userList = data.filter((obj1:any) => !this.projectData.currentUsers.some((obj2:any) => obj1.id === obj2.id));
       console.log(this.userList);
     },(error)=>console.log(error))
@@ -43,7 +48,7 @@ export class AddMemberComponent implements OnInit{
     })
     }
     else{
-      this.api.getReturn(`${environment.apiUrl}/api/v1/user/team`).subscribe(
+      this.api.getReturn(`${environment.apiUrl}/api/v1/user/getLowerLevelUser/${this.userRoleId}`).subscribe(
         (data: any) => {
           this.userList = data.filter((obj1:any) => !this.projectData.currentUsers.some((obj2:any) => obj1.id === obj2.id));
         },
@@ -91,7 +96,7 @@ export class AddMemberComponent implements OnInit{
 
      
       const headers = new HttpHeaders().set("ResponseType","text")
-      this.api.postReturn(`${environment.apiUrl}/api/v1/gm/${this.projectData.projectId}/assign`,reqBody,{headers}).subscribe((data:any)=>{
+      this.api.postReturn(`${environment.apiUrl}/api/v1/project/${this.projectData.projectId}/assign`,reqBody,{headers}).subscribe((data:any)=>{
         window.alert("User Assigned Successfully!")
         this.selectedList.map((obj)=>{
 

@@ -63,7 +63,31 @@ export class TaskDetailsComponent implements OnInit {
   }
   changeAssignedTo(){
       this.api.getReturn(`${environment.apiUrl}/api/v1/project/${this.task.project_id}/userlist`).subscribe((data:any)=>{
-      this.projectUsers = data
+        this.projectUsers = data.filter((obj:any)=>{
+     
+     
+          if(this.userRole=="USER" && obj.id!=JSON.parse(this.user).id){
+            console.log("IN USER");
+            
+            return obj.roles=="USER"
+          }
+             else if(this.userRole=="PM" && obj.id!=JSON.parse(this.user).id){
+              console.log("IN PM");
+              return obj.roles=="PM" || obj.roles=="USER"
+                  
+             }
+             else if(this.userRole=="GM" && obj.id!=JSON.parse(this.user).id){
+              console.log("IN GM");
+              return obj.roles=="PM" || obj.roles=="USER" || obj.roles=="GM" 
+             }
+          else{
+            console.log("Hi");
+            
+            return null;
+  
+          }
+        })
+
       if(this.projectUsers.length!=0){
 
         this.isAssignedToOptionOpened=true
@@ -82,9 +106,9 @@ export class TaskDetailsComponent implements OnInit {
   onChangeAssignedTo(){
     
     this.newAssignedToId = this.selectTaskHolder.nativeElement.value;
-    console.log(this.newAssignedToId,this.assignedTo);
+    console.log(this.newAssignedToId,this.task.assigned_to);
     
-    if(this.newAssignedToId==this.task.assignedTo){
+    if(this.newAssignedToId==this.task.assigned_to){
       window.alert("Please Assign a new Task Holder!");
       return
     }

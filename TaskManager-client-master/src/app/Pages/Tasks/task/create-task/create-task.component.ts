@@ -119,23 +119,31 @@ onProjectChange(event:any){
   const projectId = event.target.value
   if(projectId){
     this.projectService.getReturn(`${environment.apiUrl}/api/v1/project/${projectId}/userlist`).subscribe((data:any)=>{
+      console.log(data);
+      
       this.projectUsers = data.filter((obj:any)=>{
-        console.log(obj.roles);
-        
-        if(this.userRole=="USER"){
+     
+     
+        if(this.userRole=="USER" && obj.id!=JSON.parse(this.user).id){
           console.log("IN USER");
           
           return obj.roles=="USER"
         }
-           else if(this.userRole=="PM"){
+           else if(this.userRole=="PM" && obj.id!=JSON.parse(this.user).id){
             console.log("IN PM");
             return obj.roles=="PM" || obj.roles=="USER"
                 
            }
-           else{
+           else if(this.userRole=="GM" && obj.id!=JSON.parse(this.user).id){
             console.log("IN GM");
-            return obj.roles=="PM" || obj.roles=="USER" || obj.roles=="GM"
+            return obj.roles=="PM" || obj.roles=="USER" || obj.roles=="GM" 
            }
+        else{
+          console.log("Hi");
+          
+          return null;
+
+        }
       })
     
     },(error)=>{

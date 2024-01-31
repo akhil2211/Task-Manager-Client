@@ -24,6 +24,13 @@ export const routes: Routes = [
         path:"profile",
         component:ProfileComponent,
         title:"Profile"
-    }
+    },
+
+    {
+        path:"",
+        redirectTo:"login",pathMatch: 'full'
+    },
+    
+    
 
 ];

@@ -17,14 +17,22 @@ import { AppService } from '../../Services/app-service.service';
   styleUrl: './project.component.scss'
 })
 export class ProjectComponent implements OnInit {
+  user: any
+  userDetails: any;
+  userRole: any;
 
   constructor(private modalService:ModalService,private viewContainerRef:ViewContainerRef,private api:AppService){}
 
+  projects: any[] = [];
+  tempProjects:any[]=[];
   showProjectDetails:boolean=false;
   projectDetails:any;
   searchName:string="";
   ngOnInit(): void {
-    this.showProjectDetails=false;   
+    this.showProjectDetails=false;  
+    this.user = localStorage.getItem("user");
+    this.userDetails = JSON.parse(this.user);
+    this.userRole=JSON.parse(this.user).roles;    
   }
   viewEventDetails(event:any){
     if(event){
@@ -33,14 +41,18 @@ export class ProjectComponent implements OnInit {
     }
 
   }
+
+
+  
   showCreateProject(){  
     this.modalService.setRootViewContainerRef(this.viewContainerRef);
     this.modalService.addDynamicComponent("createProject", null);
   }
     
    searchProject(event: any) {    
-    this.searchName = event.target.value
-
+   
+       this.searchName = event.target.value.toLocaleLowerCase();
+       
     
   }
 }

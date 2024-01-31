@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
@@ -14,5 +14,9 @@ import { NavBarComponent } from './Pages/Shared Components/header/nav-bar/nav-ba
 export class AppComponent {
   title = 'Task_Management';
 
+  @HostListener("window:onbeforeunload",["$event"])
+   clearLocalStorage(event:any){
+      localStorage.clear();
+  }
 }
 
