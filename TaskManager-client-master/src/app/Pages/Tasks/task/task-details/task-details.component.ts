@@ -42,8 +42,8 @@ export class TaskDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.task=this.taskInfo.data
     this.user=localStorage.getItem("user");   
-    console.log(this.user);
-     this.userRole=JSON.parse(this.user).roles;
+    this.userRole=JSON.parse(this.user).roles;
+
      if(this.taskInfo.taskType=="AssignedTask"){
       this.showRequiredDetails=true;
      }
@@ -102,7 +102,7 @@ export class TaskDetailsComponent implements OnInit {
   getHolderValue(event:any){
     this.newAssignedTo = event.target.selectedOptions[0].text    
   }
- 
+
   onChangeAssignedTo(){
     
     this.newAssignedToId = this.selectTaskHolder.nativeElement.value;
@@ -124,7 +124,7 @@ export class TaskDetailsComponent implements OnInit {
       this.newAssignedTo = this.selectTaskHolder.nativeElement.selectedOptions[0].text    
       this.assignedTo = this.newAssignedTo
      
-      window.alert("Task Holder Changed.")
+     window.alert("Task Holder Changed!");
     },(error)=>{
    
     })
@@ -141,7 +141,7 @@ export class TaskDetailsComponent implements OnInit {
       console.log(data);
       this.isStatusOptionOpened=false
       this.status = this.newStatus
-      window.alert("Task Status Changed.")
+      window.alert("Task Status Changed !");
     },(error)=>{
       console.log(error);
       

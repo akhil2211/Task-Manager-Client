@@ -8,6 +8,7 @@ import { AppService } from '../../../../Services/app-service.service';
 import { Router } from '@angular/router';
 import { error } from 'console';
 
+
 @Component({
   selector: 'app-create-task',
   standalone: true,
@@ -34,13 +35,12 @@ export class CreateTaskComponent {
   constructor(private formBuilder : FormBuilder, private projectService : AppService, private router: Router){}
    ngOnInit(){
     this.user=localStorage.getItem("user");   
-    console.log(this.user);
     this.userRole=JSON.parse(this.user).roles;
 
     this.projectService.getReturn(`${environment.apiUrl}/api/v1/user/projects`).subscribe(
       (data: any) => {
         this.projects = data;
-        console.log(this.projects);        
+     
       },
       (error) => {
         console.error('Error fetching projects:', error);
@@ -65,6 +65,7 @@ export class CreateTaskComponent {
    })
    this.minDate = new Date().toISOString().split('T')[0];
  }
+
  createTask(){  
   
    this.submit=true;
@@ -92,7 +93,8 @@ export class CreateTaskComponent {
   const headers = new HttpHeaders().set("ResponseType","text")
   this.projectService.postReturn(`${environment.apiUrl}/api/v1/project/task/create`,taskData,{headers}).subscribe((resp:any)=>{
      this.taskCreateSuccess=true;
-     window.alert("Task Created Successfully!")
+   
+    window.alert("Task Created Successfully!");
      this.taskForm.reset();
      console.log(resp.response);    
   },(error)=>{

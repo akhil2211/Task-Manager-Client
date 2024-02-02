@@ -7,7 +7,8 @@
         <div class="project-info">
             <strong>Project Code:</strong>
             <span>{{project.project_code}}</span>
-            <div class="tasks-button" (click)="showProjectTasks(taskDetails)"><button> Show Tasks </button></div>
+            @if(userRole!="USER"){
+            <div class="tasks-button" (click)="showProjectTasks(taskDetails)"><button> Show Tasks </button></div>}
         </div>
      
         <div class="project-info">
@@ -29,8 +30,9 @@
 
         <div class="project-members">
             <div class="members">
-                <strong>Project Members:</strong>               
-                <button (click)="onAddClick()">Add</button>
+                <strong>Project Members:</strong>         
+                @if(userRole!="USER"){
+                <button (click)="onAddClick()">Add</button>}
             </div>
             <div class="membertable">
                 <table>

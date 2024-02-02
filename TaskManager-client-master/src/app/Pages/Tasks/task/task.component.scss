@@ -2,6 +2,7 @@
 .container {
   padding: 20px;
   height:98.3%;
+  position: relative;
   width:100%;
   border: 1px solid #ddd;
   border-radius: 12px;
@@ -14,6 +15,10 @@ h1{
 }
 .search-icon{
   margin-left: 7px;
+}
+.create-buttton{
+  position: absolute;
+  right: 40px;
 }
 
 app-task-details{

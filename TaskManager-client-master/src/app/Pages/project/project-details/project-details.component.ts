@@ -51,7 +51,7 @@ export class ProjectDetailsComponent implements OnInit{
       if(value){
         const headers=new HttpHeaders().set("ResponseType","text");
     
-        this.api.deleteReturn(`${environment.apiUrl}/api/v1/gm/removeMember/${userId}/${this.project.id}`,{headers}).subscribe((data:any)=>{
+        this.api.deleteReturn(`${environment.apiUrl}/api/v1/project/removeMember/${userId}/${this.project.id}`,{headers}).subscribe((data:any)=>{
         console.log(data);
         this.ngOnInit()
           

@@ -11,6 +11,7 @@ import { NavBarComponent } from './Pages/Shared Components/header/nav-bar/nav-ba
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
   title = 'Task_Management';
 
