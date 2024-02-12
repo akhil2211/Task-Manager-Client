@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewContainerRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainerRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalService } from '../../../Services/modal.service';
 import { AppService } from '../../../Services/app-service.service';
@@ -16,12 +16,16 @@ import { ProjectTasksComponent } from './project-tasks/project-tasks.component';
 export class ProjectDetailsComponent implements OnInit{
   @Input() project:any;
   @Output() viewEvent=new EventEmitter<any>()
+  @ViewChild("selectStatus") selectStatus:any
   userList:any[]=[]
   taskDetails: any;
   isTaskList:boolean=false;
   taskList:any[]=[];
   user: any;
   userRole: any;
+  isStatusOptionOpened: boolean=false;
+  newStatus: any;
+  status: any;
 
   constructor(private modalService:ModalService,private viewContainerRef:ViewContainerRef,private api:AppService){}
 
@@ -37,7 +41,9 @@ export class ProjectDetailsComponent implements OnInit{
     })
     
   }
-
+  changeStatus(){
+    this.isStatusOptionOpened = true
+  }
     onAddClick(){
       this.modalService.setRootViewContainerRef(this.viewContainerRef);
       this.modalService.addDynamicComponent("addMember", {
@@ -63,7 +69,25 @@ export class ProjectDetailsComponent implements OnInit{
    }
  });
     }
-   
+    
+    onChangeStatus(){
+      this.newStatus = this.selectStatus.nativeElement.value;
+      const reqBody = {
+        newProjectStatus:this.newStatus
+      }
+      console.log(reqBody,this.newStatus);
+      
+      const headers = new HttpHeaders().set("ResponseType","text")
+      this.api.postReturn(`${environment.apiUrl}/api/v1/project/${this.project.id}/editProjectStatus`,reqBody,{headers}).subscribe((data:any)=>{
+        console.log(data);
+        this.isStatusOptionOpened=false
+        this.status = this.newStatus
+        window.alert("Project Status Changed !");
+      },(error)=>{
+        console.log(error);
+        
+      })
+    }
 
 showProjectTasks(taskDetails:any){
 

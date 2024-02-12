@@ -61,10 +61,11 @@
         <strong>Client:</strong>
         <span>{{task.client}}</span>
     </div>
+    @if (!showRequiredDetails) {
     <div class="task-info">
         <strong>Assigned By:</strong>
         <span>{{task.full_name}}</span>
-    </div>
+    </div>}
     <div class="task-info">
         <strong>Category:</strong>
         <span>{{task.c_name}}</span>

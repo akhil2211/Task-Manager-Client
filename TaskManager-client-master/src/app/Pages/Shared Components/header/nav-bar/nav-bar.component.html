@@ -1,7 +1,8 @@
 
   <nav>
-    <h1>Taskbotic</h1>
-    
+    <div class="logo">
+      <img src="/assets/TaskBotic-logo.png" >
+    </div>
     @if(username!=null){
         <a style="float: right; " (click)="logout()">Logout</a>
         <a style="float: left;" [routerLink]="'/dashboard'" href="">Dashboard</a>

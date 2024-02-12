@@ -27,6 +27,7 @@
         <tr>
           <th>Task Title</th>
           <th>Status</th>
+          <th>Assigned By</th>
           <th>Assigned To</th>
         </tr>
       </thead>
@@ -43,7 +44,8 @@
               }
               <span>{{ task.t_status }}</span>
             </td>
-            <td>{{task.firstname}} {{task.lastname}}</td>
+            <td>{{task.Assigned_By}} </td>
+            <td>{{task.Assigned_To}}</td>
      
           </tr>
         }

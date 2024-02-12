@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { Router, Routes } from '@angular/router';
 import path from 'path';
 import { LoginComponent } from './Pages/login/login.component';
 import { RegisterComponent } from './Pages/register/register.component';
@@ -6,6 +6,7 @@ import { DashboardComponent } from './Pages/dashboard/dashboard.component';
 import { authGuard } from './AuthGuard/auth.guard';
 import { TaskComponent } from './Pages/Tasks/task/task.component';
 import { ProfileComponent } from './Pages/profile/profile.component';
+import { inject } from '@angular/core';
 
 export const routes: Routes = [
     {
@@ -17,8 +18,15 @@ export const routes: Routes = [
     {
         path:"login",
         component:LoginComponent,
-        title:"Login to Task Manager"
-    },
+        title:"Login to Task Manager",canActivate:[()=>{
+            if(typeof localStorage !== 'undefined' && localStorage.getItem("token") && localStorage.getItem("user")){
+                const router = inject(Router)
+                return router.navigate(['dashboard']);
+            }else{
+                return true;
+            }
+        }]}     
+    ,
 
     {
         path:"profile",

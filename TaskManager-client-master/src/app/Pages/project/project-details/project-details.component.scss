@@ -20,6 +20,10 @@
 .project-info {
     margin-bottom: 15px;
 }
+.status-align{
+    display: flex;
+}
+            
 
 .project-info strong {
     display: inline-block;
@@ -48,6 +52,26 @@
 }
 hr{
     border-radius: 30%;
+}
+.withEdit{
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    border-radius: 3px;
+}
+.withEdit select{
+    margin-left: 10px;
+    width: 50%;
+}
+.withEdit button{
+    padding: 5px 0px 5px 0px;
+    border: none;
+    background-color: #3498db;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    color: white;
+    width: 100px;
+    cursor: pointer;
 }
 .members{
     display: flex;
