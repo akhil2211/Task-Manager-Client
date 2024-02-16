@@ -72,16 +72,12 @@ export class AddMemberComponent implements OnInit{
       return true;
     }
   }
-  removeUser(item:any){    
-    
+  removeUser(item:any){        
     this.selectedList = this.selectedList.filter(obj => {
       return obj !== item
     });
     }
-  
-
-  
-
+   
   assignProject(){
     if(this.selectedList.length!=0){
       this.selectedList.map((value)=>{

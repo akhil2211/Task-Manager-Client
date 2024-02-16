@@ -22,17 +22,18 @@
         <div class="project-info status-align" >            
             <strong>Status:</strong>
             <div class="withEdit">
-                @if (isStatusOptionOpened) {
+                   @if (isStatusOptionOpened) {
                     <select id="projectStatus" name="projectStatus" formControlName="project_status" name="projectStatus" required #selectStatus >
                         <option value="Active">Initiated</option>
                         <option value="Pending">In Progress</option>
                         <option value="Completed">Completed</option>
                       </select>
-                    <button (click)="onChangeStatus()">Change</button>
-                }@else {
+                    <button (click)="onChangeStatus()">Change</button>}
+                @else {
                     <span>{{project.project_status}}</span>                  
-                    <button (click)="changeStatus()">Edit Status</button>}
-                
+                    @if (userRole=="GM" ) {  <button (click)="changeStatus()">Edit Status</button>}
+                }
+            
             </div>
         </div>
    
