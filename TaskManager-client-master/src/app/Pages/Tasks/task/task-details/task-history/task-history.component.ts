@@ -29,10 +29,7 @@ export class TaskHistoryComponent implements OnInit{
     history.unassigned_time=this.dataService.HHMMFormatter(history.unassigned_at) 
  } })
 
-
- }
-
- 
+ } 
 }
 
 

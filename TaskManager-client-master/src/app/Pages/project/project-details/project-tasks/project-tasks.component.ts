@@ -35,8 +35,7 @@ export class ProjectTasksComponent implements OnInit {
       this.taskList=this.initialTasks;
     }
 
-    else{
-    
+    else{    
       this.api.getReturn(`${environment.apiUrl}/api/v1/gm/${this.newStatus}/tasks/${this.project.id}`).subscribe((data:any)=>{
       console.log(data);
       this.taskList = data;

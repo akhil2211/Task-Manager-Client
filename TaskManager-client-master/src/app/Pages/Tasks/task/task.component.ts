@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppService } from '../../../Services/app-service.service';
-import { environment } from '../../../../environments/environment.development';
 import { ListTaskComponent } from './list-task/list-task.component';
 import { ModalService } from '../../../Services/modal.service';
 import { TaskDetailsComponent } from './task-details/task-details.component';

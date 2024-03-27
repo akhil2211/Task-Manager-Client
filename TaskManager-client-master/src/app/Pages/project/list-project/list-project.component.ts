@@ -107,8 +107,3 @@ export class ListProjectComponent implements OnInit, OnChanges {
  
 }
 
-// this.tasks= this.tempTasks  
-//   this.searchTaskName = event.target.value
-//   this.tasks=this.tasks.filter((task:any)=>{ 
-//     const taskTitle=task.t_title.toLocaleLowerCase()
-//     return taskTitle.includes(this.searchTaskName.toLocaleLowerCase())
