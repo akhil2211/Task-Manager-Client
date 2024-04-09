@@ -5,6 +5,7 @@ import { DashboardComponent } from './Pages/dashboard/dashboard.component';
 import { authGuard } from './AuthGuard/auth.guard';
 import { ProfileComponent } from './Pages/profile/profile.component';
 import { inject } from '@angular/core';
+import { PageNotFoundComponent } from './Pages/page-not-found/page-not-found.component';
 
 export const routes: Routes = [
     {
@@ -25,8 +26,7 @@ export const routes: Routes = [
             }
         }]}     
     ,
-
-    {
+        {
         path:"profile",
         component:ProfileComponent,
         title:"Profile"
@@ -36,5 +36,11 @@ export const routes: Routes = [
         path:"",
         redirectTo:"login",pathMatch: 'full'
     },  
+    
+    {
+        path:"**",
+        component:PageNotFoundComponent,
+        title:"Page Not Found"
+    }
     
 ];
